@@ -1,0 +1,233 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref,ragged2e,amsmath,multicol,gensymb,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepgfplotslibrary{polar,fillbetween}
+\usepgflibrary{shapes.geometric}
+\usepgfplotslibrary{external}
+\usetikzlibrary{calc,patterns,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arcCot}
+
+\DeclareMathOperator{\arccsc}{arcCsc}
+\DeclareMathOperator{\arccosh}{arcCosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arcCsch}
+\DeclareMathOperator{\arccoth}{arcCoth} 
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Halaman \thepage}
+\rhead{Pembahasan Soal ETS 2020/2021 \\ (\href{https://instagram.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_})}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\tikzexternalize
+\begin{document}
+ \begin{titlepage}
+    \vspace*{\fill}
+    \begin{center}
+      \Huge {PEMBAHASAN SOAL ETS \\ MATEMATIKA II \\ TAHUN 2020/2021}\\[0.4 cm]
+      \huge {Ahmad Hisbu Zakiyudin}
+    \end{center}
+    \vspace*{\fill}
+  \end{titlepage}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcount\arrowcount
+\newcommand\arrows[1]{
+        \global\arrowcount#1
+        \ifnum\arrowcount>0
+                \begin{matrix}[c]
+                \expandafter\nextarrow
+        \fi
+}
+
+\newcommand\nextarrow[1]{
+        \global\advance\arrowcount-1
+        \ifx\relax#1\relax\else \xrightarrow{#1}\fi
+        \ifnum\arrowcount=0
+                \end{matrix}
+        \else
+                \\
+                \expandafter\nextarrow
+        \fi
+}
+\newpage
+\setstretch{1.3}
+# Ringkasan Eksekutif  
+Laporan ini menyajikan derivasi Persamaan Diferensial Parsial (PDE) mundur untuk harga klaim derivatif dengan menggunakan formula Feynman–Kac, sehingga persamaan stokastik dalam file pengguna (Eq. (2) dan (5)) *transform* menjadi PDE target (secara analogi dengan Pers. (8) pada referensi lain). Kita mulai dengan mengekstrak notasi dan persamaan kunci dari file pengguna (termasuk Eq.(4) yang berisi \(f(t,Y,Z)\)). Selanjutnya kita menyusun dinamika SDE dua variabel \((X_t,Y_t)\) sesuai notasi paper, menghitung *generator infinitesimal* dengan menerapkan Teorema Itô, dan menuliskan PDE mundur \(\partial_tV + \mathcal{L}V - rV = 0\) via Feynman–Kac【42†L5720-L5724】【56†L333-L337】. Laporan mendetailkan pemetaan setiap suku dari SDE (2) dan (5) pada file pengguna ke suku-suku dalam PDE akhir, dan mengidentifikasi fungsi driver \(f(t,Y,Z)=-rY-\theta Z\) sebagaimana diberikan dalam file. Kami juga membahas kasus khusus (mis. \(Y\) deterministik vs stokastik, korelasi antar-BM, perubahan ukuran risiko) dan asumsi yang dibutuhkan (regularitas \(C^{2,1}\), Markov, dsb.)【42†L5720-L5724】. Disertakan daftar periksa verifikasi model dan metode numerik (skema beda hingga, ADI, metode garis, Monte Carlo F-K)【61†L60-L67】. Sebuah contoh kerja (X OU, \(Y=f(X)\)) disajikan langkah-demi-langkah. Akhirnya, tabel membandingkan asumsi/model dengan bentuk PDE yang dihasilkan, dan flowchart `mermaid` menunjukkan alur derivasi matematika secara visual. Referensi utama: literatur stokastik (F-K, Itô) dan sumber terkait pricing PDE.
+
+## 1. Persamaan Kunci dalam File Pengguna  
+Dari file pengguna (BSDEs untuk opsi), kita catat persamaan penting dengan notasi yang identik:  
+- *Eq. (4)*: Persamaan stokastik yang diberikan adalah  
+  $$
+  dY(t) = \bigl(r\,Y(t) + \theta\,Z(t)\bigr)\,dt + Z(t)\,dW(t), \quad Y(0)=y_0. \quad(4)
+  $$  
+- *Eq. (5)* (BSDE driver) dan (6): Pernyataan selanjutnya dalam teks menyimpulkan bahwa fungsi *driver* BSDE, yaitu \(f(t,Y(t),Z(t))\), adalah  
+  $$
+  f\bigl(t,Y(t),Z(t)\bigr) = -\,r\,Y(t) \;-\; \theta\,Z(t). 
+  $$  
+  Ini dinyatakan eksplisit pada file pengguna (tampak pada teks “\(f(t,Y,Z) = -rY -\theta Z\)” setelah Eq. (5)-(6)). (Asumsi terminal: \(Y(T)=\xi(X(T))\), meski tidak dieksplisitkan, lazim dalam BSDE pricing【42†L5720-L5724】.)  
+- *Eq. (2)* dalam file tampaknya merujuk pada dinamika aset \(S(t),B(t)\) sebelumnya (tidak dispesifikasi di sini), yang pada akhirnya memberikan Eq. (3) untuk portofolio \(Y\). Karena fokus kita pada PDE, detail Eq. (2) ini kurang kritikal; yang penting adalah Eq.(4) dan nilai \(f(t,Y,Z)\).  
+- *Eq. (8)* disebutkan dalam tugas, namun dalam file pengguna ini persamaan bernomor (7) sudah berupa PDE generator. Mungkin maksudnya adalah PDE target generik. Kita akan memperoleh bentuk PDE sendiri via F-K.  
+
+Dengan demikian, di file pengguna \((X_t,Y_t)\) termodifikasi menjadi variabel \(Y\) dalam BSDE di atas. Kita akan menyesuaikan notasi agar \(X_t\) mewakili variabel stokastik lain (mis. harga aset) dan \(Y_t\) adalah nilai portfolio atau proses terkait yang mengikuti Eq.(4).
+
+## 2. Model SDE dan Generator Infinitesimal  
+Definisikan proses stokastik \((X_t,Y_t)\) berdimensi dua di bawah ukuran risk-neutral \(\mathbb{Q}\):  
+- \(X_t\) mengikuti SDE mean-reverting umum:  
+  $$
+  dX_t = a(X_t,t)\,dt + b(X_t,t)\,dW_t^{\mathbb{Q}},
+  $$  
+  di mana \(a(x,t)\) adalah drift (mis. \(k(\theta-x)\) dalam OU) dan \(b(x,t)\) volatilitas (contoh konstan \(\sigma\)).  
+- \(Y_t\) mengikuti SDE:  
+  $$
+  dY_t = f(t,Y_t,Z_t)\,dt + Z_t\,dW_t^{\mathbb{Q}},
+  $$  
+  yang sesuai dengan driver BSDE. Dari Eq.(4) file pengguna, kita identifikasi \(f(t,Y,Z) = rY + \theta Z\) pada laju \(dt\) (sehingga untuk BSDE berbentuk \(dY = -f\,dt + Z\,dW\), driver sebenarnya \(-rY-\theta Z\)). Dari Eq.(4) pengguna, obs: \(dY = (rY + \theta Z)\,dt + Z\,dW\).  
+- Di sini \(Z_t\) adalah proses skor BSDE. Jika \(Y_t\) bersifat deterministik (atau tidak ada diffusi), hilangkan komponen \(dW\) pada \(Y\). Kita juga dapat memperkenalkan koefisien difusi \(c(Y,t)\) pada \(Y\) jika dibutuhkan, dan korelasi \(\rho\) antara \(dW^X\) dan \(dW^Y\) untuk kasus umum.  
+
+Generator infinitesimal \(\mathcal{L}\) untuk vektor \((X,Y)\) digunakan oleh PDE mundur. Dengan pendekatan Itô, untuk fungsi \(V(t,x,y)\) kita dapat tulis (mengabaikan cross-term korelasi dulu):  
+$$
+\mathcal{L}V = a(x,t)\,\partial_x V + f(t,y,z)\,\partial_y V + \tfrac12 b(x,t)^2\,\partial_{xx}V + \tfrac12 c(y,t)^2\,\partial_{yy}V + \rho\,b(x,t)c(y,t)\,\partial^2_{xy}V,
+$$  
+dengan \(f(t,y,z)\) di sini sebagai drift \(Y\) di SDE (termasuk tanda + atau – sesuai konvensi), dan \(c=0\) jika \(Y\) tidak berdifusi. (Jika \(Y\) tanpa difusi maka \(\frac12c^2 \partial_{yy}=0\) dan \(\rho\) cross-term hilang.)  
+
+**Contoh khusus (tidak dipakai dalam file)**: Jika \(X\) OU, maka \(a(x,t)=k(\theta-x)\), \(b(x,t)=\sigma\). Jika \(Y\) deterministik given \(X\), cukup \(f(t,y,z)=rY+\theta Z\), \(c=0\).  
+
+## 3. Turunan PDE via Feynman–Kac  
+Kita gunakan formula *Feynman–Kac* untuk menghasilkan PDE mundur. Secara umum, jika \(V(t,x,y)\) adalah harga ekspektasi terdiskonto dari payoff terminal, maka menurut F-K PDE-nya adalah:  
+$$
+\frac{\partial V}{\partial t} + \mathcal{L}V - rV = 0,
+$$  
+dengan kondisi batas \(V(T,x,y) = g(x,y)\) (payoff)【42†L5720-L5724】【56†L333-L337】.   
+
+Substitusi \(\mathcal{L}\) di atas:  
+$$
+\partial_t V + a(x,t)V_x + f(t,y,z)V_y + \tfrac12 b^2(x,t)V_{xx} + \tfrac12 c^2(y,t)V_{yy} + \rho\,b(x,t)c(y,t)V_{xy} - rV = 0. 
+$$
+
+Untuk kasus file pengguna: \(a(x,t)\) dan \(b(x,t)\) berasal dari drift/difusi aset di Eq.(2) (tidak ditampilkan, tapi mis. \(a=\mu x\), \(b=\sigma x\) untuk saham Black–Scholes). Dari Eq.(4) pengguna, tampak bahwa drift \(Y\) adalah \(\mu_Y = rY+\theta Z\) (di laju +dt). Karena RSDE BSDE biasanya ditulis \(dY=-f\,dt+Z\,dW\), driver sebenarnya \(f_{\text{BSDE}} = -rY - \theta Z\). Dengan memilih notasi kita, kita definisikan bagian drift \(Y\) di PDE sebagai \(f_Y = rY+\theta Z\).  
+
+Maka PDE spesifik:  
+$$
+\partial_tV + a(x,t)\partial_xV + (r y + \theta z)\partial_yV + \frac12 b^2(x,t)\partial^2_{xx}V - rV = 0,
+$$  
+dengan syarat terminal \(V(T,x,y)=g(x,y)\). (Jika \(Y\) tidak berdifusi, maka \(\partial_{yy}\) tidak muncul.) Ini konsisten dengan bentuk umum (8) yang diharapkan, hanya koefisien spesifik \(a,b\) mengikuti model.  
+
+## 4. Pemetaan Pers.(2),(5) ke PDE Mundur  
+Sekarang kita cocokkan suku dari Pers. (2) dan (5) file pengguna dengan suku PDE:  
+- **Pers.(2)** *(tidak diekstrak di sini)* mengandung dinamika aset \(X\). Drift dan volatilitasnya masuk ke \(a(x,t)V_x\) dan \(\tfrac12b^2V_{xx}\). Sebagai contoh, jika Eq.(2) model OU maka \(a(x,t)=k(\theta-x)-\lambda\sigma\) (jika sudah diukur risiko).  
+- **Pers.(5)** memberi \(f(t,Y,Z) = -rY - \theta Z\). Artinya dalam PDE, istilah \(V_y\) muncul dengan koefisien \(+(rY+\theta Z)\) ketika ditulis dalam bentuk backward PDE (yakni \(\mathcal{L}V\) menggunakan konvensi drift \(+\mu\,dt\) pada \(Y\) sebelum mengubah tanda). Jika kita menyusun PDE mundur standar, kita menambahkan \((r y + \theta z)V_y\).  
+- **Diskonto \(-rV\)** ditambahkan mengikuti mekanisme F-K (syarat arbritase bebas).  
+Dengan demikian, diagram pemetaan: 
+  - \(f(t,Y,Z)\) di BSDE → istilah \(\partial_yV\) di PDE. 
+  - \(\theta Z\) di driver menginduksi cross-derivative antara \(Y\) dan \(Z\) tidak muncul langsung di PDE (karena \(Z\) menjadi bagian dari gradien \(\partial_x\) atau \(\partial_y\) tergantung model, meski di kasus ini \(Z\) murni term dari BSDE). 
+  - *Catatan:* Paper pengguna menginginkan fungsi \(f(t,Y,Z)=-rY-\theta Z\) sesuai Eq.(4) file. Ini cocok dengan interpretasi kita bahwa PDE mundurnya akan mempunyai suku \((rY+\theta Z)V_y\).  
+
+## 5. Kasus Khusus dan Asumsi  
+- **Y deterministik:** Jika \(dY = f(X,t)dt\) tanpa dW, maka PDE kehilangan suku \(\partial_{yy}V\) maupun \(\partial_{xy}V\). Ini terjadi bila \(Z=0\).  
+- **Y berdifusi (independen):** Tambah suku \(\tfrac12c^2(y,t)V_{yy}\). Contohnya stokastik drift, atau volatilitas dependent pada state lain.  
+- **Korelasi noise:** Jika \(dW^X\) dan \(dW^Y\) berkorelasi \(\rho\), muncul suku \(\rho b c\,\partial^2_{xy}V\). Memperhitungkan ini penting bila kedua proses terhubung secara umum.  
+- **Ukuran risiko (Girsanov):** Jika model dibangun di bawah ukuran fisik \(\mathbb{P}\), maka drift \(a(x,t)\) dalam PDE diganti dengan risiko-netral (mis. \(\mu-\lambda\sigma\) atau \(r\)). Hasil PDE berbeda; *F-K* berlaku untuk ukuran apa pun, namun PDE spesifik bergantung pada measure saat memodelkan \(dX\)【55†L212-L220】.  
+- **Kondisi terminal/batas:** Penting menegaskan \(V(T,x,y)=g(x,y)\) diketahui. Asumsi teknis: fungsi \(V\) harus cukup mulus (\(C^{2,1}\)) dan tumbuh pada laju moderat agar solusi terdefinisi【42†L5720-L5724】. Proses Markov dan kekontinuan driver dijamin F-K dapat dipakai.  
+
+## 6. Metode Numerik dan Verifikasi  
+**Ceklist Verifikasi:** Pastikan model memenuhi syarat F-K:  
+1. *Regularitas:* Koefisien \(a,b,f\) kontinu Lipshitz/C²,solusi PDE \(V(t,x,y)\in C^{2,1}\)【42†L5720-L5724】.  
+2. *Pertumbuhan:* Pertumbuhan linier/polinomial terkontrol agar ekspektasi finiti.  
+3. *Terminal/Boundary:* Kondisi pay-off \(V(T)=g(x,y)\) terpenuhi. Boundary eksternal (mis. \(x\to0,\infty\)) diselesaikan dengan kondisi (Dirichlet/Neumann).  
+
+**Metode Solusi:**  
+- *Finite Difference:* Beda-hingga eksplisit/implisit atau ADI. Contoh eksplisit dibahas dalam literatur【61†L60-L67】; kondisional stabil (tergantung langkah) sehingga perlu analisis kestabilan. ADI (alternating direction implicit) sering digunakan untuk PDE 2D dengan koefisien kovariansi【56†L333-L337】.  
+- *Metode Garis (Method-of-Lines):* Diskritisasi dalam \(x,y\) → sistem ODE waktu. Bisa pakai solver ODE stiff.  
+- *Monte Carlo (F-K):* Simulasikan \((X,Y)\) di bawah \(\mathbb{Q}\) hingga \(T\) dan ambil ekspektasi diskonto \(e^{-rT}g(X_T,Y_T)\). Validasi dengan F-K (teorema)【42†L5726-L5734】. Berguna untuk dimensi lebih tinggi walau memerlukan banyak sampel.  
+- *Metode Spektral / FEM:* Alternatif lanjutan.  
+
+## 7. Contoh Kerja: Ornstein–Uhlenbeck dan \(Y_t=f(X_t)\)  
+Sebagai ilustrasi, anggap \(X_t\) Ornstein–Uhlenbeck:  
+$$dX_t = k(\theta - X_t)\,dt + \sigma\,dW_t,$$ 
+dan \(Y_t\) akumulatif drift \(f(X_t)\) (so tidak ada \(\,dW\) pada \(Y\)). Maka SDE-nya:  
+$$dY_t = f(X_t)\,dt.$$  
+Generator infinitesimalnya:  
+$$\mathcal{L}V = k(\theta-x)\partial_xV + f(x)\partial_yV + \tfrac12\sigma^2\partial_{xx}V.$$  
+PDE F-K mundurnya menjadi:  
+$$\partial_tV + k(\theta-x)V_x + f(x)V_y + \tfrac12\sigma^2V_{xx} - rV = 0,\quad V(T,x,y)=g(x,y).$$  
+Langkah-langkah derivasi:  
+1. Tulis SDE dan tentukan drift/difusi: \(a(x)=k(\theta-x)\), \(b(x)=\sigma\), serta drift \(Y\): \(f(x)\).  
+2. Tulis generator \(\mathcal{L}\) seperti di atas dengan menerapkan Itô pada \(V(X_t,Y_t)\).  
+3. Terapkan Feynman–Kac: tambahkan \(\partial_tV\) dan \(-rV\) di PDE mundur.  
+4. Identifikasi terminal \(V(T)=g\).  
+Hasil PDE ini konsisten memuat suku \(\partial_yV\) dari \(\,dY\), sesuai persamaan target (mirip Eq.(8) dalam literatur).  
+
+## 8. Tabel Kasus Asumsi vs Bentuk PDE  
+| **Asumsi Model**                          | **Bentuk PDE Mundur**                                                         |
+|------------------------------------------|--------------------------------------------------------------------------------|
+| \(dY=f(x)\,dt\) (Y det.)               | \(\partial_tV + a(x)V_x + f(x)V_y + \tfrac12b^2(x)V_{xx} -rV =0\).              |
+| \(dY=f\,dt + c(y)dZ, \rho=0\)          | Tambahan \(\tfrac12c^2(y)V_{yy}\) di LHS (difusi Y independen).                |
+| \(dY=f\,dt + c(y)dZ, \rho\neq 0\)      | Tambahan \(\tfrac12c^2V_{yy} + \rho bc\,V_{xy}\) (difusi Y berkorelasi).       |
+| Risk-neutral measure                   | Ganti drift \(a(x)\to \tilde a(x)=a(x)-\lambda b(x)\) sesuai Girsanov【55†L212-L220】. |
+| Terminal \(V(T)=g\)                     | Kondisi batas PDE ditetapkan \(V(T,x,y)=g(x,y)\).                              |
+
+## 9. Diagram Alir Derivasi  
+```mermaid
+flowchart TD
+    A[Mulai: Tulis SDE \(dX_t=a(x,t)dt+b(x,t)dW, \ dY_t=f(t,Y,Z)dt+Z\,dW\)] --> 
+    B[Hitung Generator \(L\) dengan Itô: \(\mu_XV_x + \mu_YV_y + \tfrac12\sigma^2V_{xx} + \cdots\)];
+    B --> C[Terapkan Feynman–Kac: Bentuk PDE mundur \(\partial_tV + L V - rV = 0\)];
+    C --> D[Substitusi koef. dari Eq.(2),(5) pengguna ke dalam PDE];
+    D --> E[Temukan PDE akhir (sesuai Eq.(8) yang diinginkan)];
+    E --> F[Selesaikan PDE (analitik/num.) / Cek solusi];
+```
+
+Diagram di atas menyorot langkah utama: mulai dari SDE (A), kalkulasi generator (B), penerapan F-K (C), pemetaan suku-suku (D), hingga PDE akhir (E). 
+
+**Referensi:** Teorema Feynman–Kac dan kalkulus stokastik (mis. Oksendal, Karatzas–Shreve) menjamin validitas langkah-langkah ini【42†L5720-L5724】【56†L333-L337】. Metode beda hingga dan skema numerik lain direkomendasikan (mis. eksplisit menurut【61†L60-L67】). 
+
+
+\begin{enumerate}
+    \item\textbf{(EAS 2023/2024)} Gambarkan daerah yang dibatasi oleh kurva-kurva $y=\sqrt{x}, y=2,$ dan $x=0$, kemudian dapatkan volume benda putar jika daerah tersebut diputar pada garis $x=-2$.
+    \item\textbf{(EAS 2023/2024)} Dapatkan volume benda putar jika daerah yang dibatasi oleh kurva-kurva $y=\frac{1}{x}, x=2,$ dan $y=2$ diputar terhadap sumbu-$x$. Buatlah sketsa daerah tersebut.
+        \item\textbf{(EAS 2023/2024)} Gambarkan daerah di kuadran I yang dibatasi oleh kurva-kurva $y=x^2$, $y=8-2x$ dan sumbu-$y$. Dapatkan volume benda putar jika daerah tersebut diputar pada sumbu-$x$.
+    \item\textbf{(EAS 2020/2021)} Dapatkan luas permukaan yang terbentuk, jika kurva $x^2-4x+y^2=0$ yang terletak di kuadran pertama dan diputar pada sumbu-$x$ sepanjang $0\leq x\leq 2$.
+    \item \textbf{(EAS 2020/2021)} Dapatkan panjang kurva $y=75\cosh \frac{x}{75}$ dari $x=-150$ ke $x=150$.
+    \item \textbf{(EAS 2020/2021)} Hitung luas permukaan benda putar dari $y^2-10x+x^2-10y+25=0$ diputar terhadap titik pusat. 
+    \item \textbf{(EAS 2020/2021)} Diberikan persamaan kurva $x=2\sqrt{1-y};-1\leq y\leq 0$.
+    \begin{enumerate}
+        \item Buatlah sketsa grafik persamaan kurvanya.
+        \item Dapatkan luas permukaan benda putar jika kurva diputar terhadap sumbu-$y$.
+    \end{enumerate}
+    \item \textbf{(EAS 2020/2021)} Dapatkan panjang busur dari kurva $r=a\cos\theta+b\sin\theta$.
+    \item \textbf{(ETS 2021/2022)} Dapatkan volume benda padat yang terjadi bila daerah yang dibatasi oleh $y=\sqrt{x}, y=x^2$ diputar terhadap garis $y=1$.
+    \item \textbf{(ETS 2021/2022)} Dapatkan volume benda padat yang terjadi bila daerah yang dibatasi oleh $y=(x-2)^2,x+y=4$ diputar pada $x=4$.
+    \item \textbf{(ETS 2021/2022)} Dapatkan volume benda padat yang diperoleh bila daerah yang dibatasi oleh $y=\sqrt{x+6},y=0,x=0$ diputar pada garis $x=3$.
+    \item \textbf{(ETS 2021/2022)} Dapatkan volume benda padat yang terjadi bila daerah yang dibatasi oleh $y=x,y=\sqrt{4-x^2},x=0$ diputar terhadap sumbu-$x$.
+    \item \textbf{(EAS 2021/2022)} Dapatkan luas permukaan dari kurva $y=\sqrt{9-x^2},-2\leq x\leq 2$ jika diputar terhadap sumbu-$x$.
+    \item \textbf{(EAS 2021/2022)} Dapatkan luas permukaan dari kurva $y=|2x-4|,1\leq x\leq 3$ diputar terhadap sumbu-$x$.
+   
+\end{enumerate}
+\end{document}
+
