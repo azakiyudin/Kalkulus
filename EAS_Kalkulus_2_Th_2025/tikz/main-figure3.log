@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  2 JUN 2026 12:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  2 JUN 2026 13:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1142,11 +1142,11 @@ File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \c@lemma=\count387
 \c@con=\count388
 \c@prop=\count389
-Package hyperref Info: Option `colorlinks' set `true' on input line 79.
+Package hyperref Info: Option `colorlinks' set `true' on input line 80.
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 110.
+h' as default language. on input line 111.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-10.
+11.
 (C:\Program Files\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1155,24 +1155,24 @@ LaTeX Warning: Unused global option(s):
     [openany].
 
 No file tikz/main-figure3.aux.
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count390
@@ -1234,7 +1234,7 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \providecommand\hyper@newdestlabel[2]{}
-Package hyperref Info: Link coloring ON on input line 110.
+Package hyperref Info: Link coloring ON on input line 111.
 \c@maskedRefs=\count396
 (C:\Program Files\MiKTeX\tex/latex/apacite\english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
@@ -1259,45 +1259,45 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 110.
-LaTeX Info: Redefining \celsius on input line 110.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 110
+or `english'. on input line 111.
+LaTeX Info: Redefining \celsius on input line 111.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 111
 .
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 110.
-Package gensymb Info: Using \Omega for \ohm on input line 110.
+LaTeX Info: Redefining \ohm on input line 111.
+Package gensymb Info: Using \Omega for \ohm on input line 111.
 
 Package gensymb Warning: Not defining \micro.
 
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-15.
+16.
 (C:\Program Files\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-115.
+116.
 (C:\Program Files\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-115.
+116.
 (C:\Program Files\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 115.
+(Font)              <10> on input line 116.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 115.
+(Font)              <7> on input line 116.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 115.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 115
+(Font)              <5> on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 116
 .
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 115
+LaTeX Font Info:    Trying to load font information for U+msb on input line 116
 .
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1310,31 +1310,58 @@ A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 \openout4 = `tikz/main-figure3.dpth'.
 
-NOTE: coordinate (1Y1.00001677e0],3Y0.0e0]) has been dropped because it is unbo
-unded (in y). (see also unbounded coords=jump). 
-[2
+\pgf@layerbox@axis background=\box135
+\pgf@layerboxsaved@axis background=\box136
+\pgf@layerbox@axis grid=\box137
+\pgf@layerboxsaved@axis grid=\box138
+\pgf@layerbox@axis ticks=\box139
+\pgf@layerboxsaved@axis ticks=\box140
+\pgf@layerbox@axis lines=\box141
+\pgf@layerboxsaved@axis lines=\box142
+\pgf@layerbox@axis tick labels=\box143
+\pgf@layerboxsaved@axis tick labels=\box144
+\pgf@layerbox@pre main=\box145
+\pgf@layerboxsaved@pre main=\box146
+\pgf@layerbox@axis descriptions=\box147
+\pgf@layerboxsaved@axis descriptions=\box148
+\pgf@layerbox@axis foreground=\box149
+\pgf@layerboxsaved@axis foreground=\box150
+Package pgfplots info on input line 350: Setting layers 'axis background,axis g
+rid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis
+ foreground'...
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 350.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 350.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 350.
+[3
 
 {C:/Users/jekiyudin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Progra
-m Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/
-enc/dvips/lm/lm-rm.enc}]
+m Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/
+dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
+c}]
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
+isable this.
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 45501 strings out of 467690
- 1098094 string characters out of 5425021
- 2405972 words of memory out of 5000000
- 73741 multiletter control sequences out of 15000+600000
- 646832 words of font info for 62 fonts, out of 8000000 for 9000
+ 45505 strings out of 467690
+ 1097922 string characters out of 5425021
+ 1655258 words of memory out of 5000000
+ 73736 multiletter control sequences out of 15000+600000
+ 659717 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,13n,110p,1229b,2378s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/M
-iKTeX/fonts/type1/public/lm/lmr10.pfb>
-Output written on tikz/main-figure3.pdf (1 page, 51201 bytes).
+ 106i,13n,110p,1229b,2553s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/M
+iKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
+ic/lm/lmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
+Output written on tikz/main-figure3.pdf (1 page, 56567 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
+ 40 PDF objects out of 1000 (max. 8388607)
  1 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

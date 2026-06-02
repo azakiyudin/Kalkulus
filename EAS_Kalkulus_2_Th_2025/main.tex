@@ -38,6 +38,7 @@ fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim,amsthm,physics}
 % Disable tikz externalization to avoid requiring -shell-escape
 \usepgfplotslibrary{external}
 \tikzexternalize[prefix=tikz/]
+\tikzset{reuse path/.code={\pgfsyssoftpath@setcurrentpath{#1}}}
 \usetikzlibrary{shapes.geometric,arrows}
 \newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
 \pgfplotsset{compat=1.15}
@@ -267,35 +268,121 @@ Didapatkan bahwa jari-jari luar $r_l$ adalah jarak dari sumbu putar ke kurva $y=
       }
     \end{jawab}
         \item[3.] Tentukan luas daerah di dalam lingkaran $r=6$ dan di dalam kardioda $r=4+4\cos\theta$. Sketsa luasan bidang datar.\\
-        \begin{jawab}[grafik fungsi, Integral, Luas daerah]{
+        \begin{jawab}[grafik fungsi polar, integral fungsi trigonometri, luas daerah di dalam kurva polar]{
+             \\
+             Untuk menggambar kurvanya, kita perlu mencari titik potong antara kurva $r=6$ dan $r=4+4\cos\theta$ dengan menyamakan kedua persamaan tersebut:
+\begin{align*}
+6 = 4 + 4\cos\theta \qquad \Longleftrightarrow \qquad 4\cos\theta = 2 \qquad \Longleftrightarrow \qquad \cos\theta = \frac{1}{2}
+\end{align*}
+Kemudian, kita dapatkan nilai $\theta$ sebagai berikut:
+\begin{align*}
+\theta = \pm \frac{\pi}{3} + 2k\pi, \quad k \in \mathbb{Z}
+\end{align*}
+Jadi, titik potong antara kedua kurva tersebut terjadi pada $\theta = \frac{\pi}{3}$ dan $\theta = -\frac{\pi}{3}$. Berikut ini adalah sketsa dari kedua kurva tersebut, yaitu lingkaran $r=6$ dan kardioda $r=4+4\cos\theta$, serta daerah yang diarsir yang merupakan daerah di dalam kedua kurva tersebut.
     \begin{center}
         \begin{tikzpicture}
-
+\pgfplotsset{set layers}
   \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
     \addplot[domain=0:360,samples=300, color=red] {6};
+    \addplot[domain=-60:60,opacity=0, save path=\A] {6};
+    \addplot[domain=60:300,opacity=0, save path=\B] {4+4*cos(x)};
+    %Node kurva r=6
+    \node[red] at (axis cs:90,7) {$r=6$};
+    %Node kurva r=4+4*cos(x)
+    \node[blue] at (axis cs:45,5.8) {$r=4+4\cos\theta$};
+    \pgfonlayer{axis background}
+    \fill[gray!20, reuse path=\A];
+    \fill[gray!20, reuse path=\B];
+    \endpgfonlayer
     \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
   \end{polaraxis}
 
   \end{tikzpicture}
     \end{center}
-  \begin{center}
-	\begin{tikzpicture}
-\begin{axis}[
-x= 1 cm, y=1 cm,
- axis lines=middle,
-  xmin=-0.8,xmax=5,ymin=-0.5,ymax=3,
-  xtick={0},
-  ytick={0},
-  xlabel=$x$,
-  ylabel=$y$]
-\addplot [domain=0:1,samples=3000] {sqrt(4-4*x)};
-\draw (1,-0.03) node[below] {$a$};
-\draw (-0.03,2) node[left] {$2a$};
-\addplot[domain=0:90,samples=300,data cs=polar] (x,{4+4*cos(x)});
-\draw (4,-0.03) node[below] {$4a$};
-\end{axis}
-\end{tikzpicture}
-\end{center}
+%   \begin{center}
+% 	\begin{tikzpicture}
+% \begin{axis}[
+% x= 1 cm, y=1 cm,
+%  axis lines=middle,
+%   xmin=-0.8,xmax=5,ymin=-0.5,ymax=3,
+%   xtick={0},
+%   ytick={0},
+%   xlabel=$x$,
+%   ylabel=$y$]
+% \addplot [domain=0:1,samples=3000] {sqrt(4-4*x)};
+% \draw (1,-0.03) node[below] {$a$};
+% \draw (-0.03,2) node[left] {$2a$};
+% \addplot[domain=0:90,samples=300,data cs=polar] (x,{4+4*cos(x)});
+% \draw (4,-0.03) node[below] {$4a$};
+% \end{axis}
+% \end{tikzpicture}
+% \end{center}
+Diperhatikan bahwa daerah tersebut simetri terhadap sumbu-$x$, sehingga kita dapat menghitung luas daerah tersebut dengan menghitung luas daerah di atas sumbu-$x$ dan kemudian mengalikannya dengan 2. \\
+Diperhatikan pula bahwa daerah di atas sumbu-$x$ dibatasi oleh kurva $r=6$ untuk $\theta$ dari $0$ hingga $\frac{\pi}{3}$, dan dibatasi oleh kurva $r=4+4\cos\theta$ untuk $\theta$ dari $\frac{\pi}{3}$ hingga $\pi$. Berikut adalah visualisasi dari daerah yang akan dihitung luasnya:
+    \begin{center}
+        \begin{tikzpicture}
+\pgfplotsset{set layers}
+  \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
+    \addplot[domain=0:360,samples=300, color=red] {6};
+    \node at (axis cs:30,4) {\large{$L_1$}};
+    \addplot[domain=0:60,opacity=0, save path=\apa] {6} -- (axis cs:60,0)
+-- (axis cs:0,0)
+-- cycle;
+    \pgfonlayer{axis background}
+    \fill[gray!20, even odd rule, reuse path=\apa];
+    \endpgfonlayer
+    % \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
+  \end{polaraxis}
+    \end{tikzpicture}
+    \begin{tikzpicture}
+\pgfplotsset{set layers}
+  \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
+    % \addplot[domain=0:360,samples=300, color=red] {6};
+    \addplot[domain=60:180,opacity=0, save path=\B] {4+4*cos(x)};
+    \node at (axis cs:80,3) {\Large{$L_2$}};
+    \pgfonlayer{axis background}
+    \fill[gray!20, reuse path=\B];
+    \endpgfonlayer
+    \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
+  \end{polaraxis}
+    \end{tikzpicture}
+    \end{center}
+    Ingat kembali bahwa luas daerah yang dibatasi oleh kurva polar $r=f(\theta)$ dari $\theta=a$ hingga $\theta=b$ dapat dihitung menggunakan rumus berikut:
+\begin{align*}
+A = \frac{1}{2} \int_{a}^{b} f(\theta)^2 d\theta
+\end{align*}
+Dengan menggunakan rumus tersebut, didapatkan luas daerah $L_1$ yang dibatasi oleh kurva $r=6$ untuk $\theta$ dari $0$ hingga $\frac{\pi}{3}$ sebagai berikut:
+\allowdisplaybreaks
+\begin{align*}
+L_1 &= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} 6^2 d\theta \\
+&= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} 36 d\theta \\
+&= 18 \int_{0}^{\frac{\pi}{3}} d\theta \\
+&= 18 \left[ \theta \right]_{0}^{\frac{\pi}{3}} \\
+&= 18 \cdot \frac{\pi}{3} \\
+&= 6\pi
+\end{align*}
+Selanjutnya, didapatkan luas daerah $L_2$ yang dibatasi oleh kurva $r=4+4\cos\theta$ untuk $\theta$ dari $\frac{\pi}{3}$ hingga $\pi$ sebagai berikut:
+\allowdisplaybreaks
+\begin{align*}
+L_2 &= \frac{1}{2} \int_{\frac{\pi}{3}}^{\pi} (4+4\cos\theta)^2 d\theta \\
+&= \frac{1}{2} \int_{\frac{\pi}{3}}^{\pi} (16 + 32\cos\theta + 16\cos^2\theta) d\theta \\
+&= \frac{1}{2} \int_{\frac{\pi}{3}}^{\pi} (16 + 32\cos\theta + 16\cdot\frac{1+\cos(2\theta)}{2}) d\theta \\
+&= \frac{1}{2} \int_{\frac{\pi}{3}}^{\pi} (16 + 32\cos\theta + 8 + 8\cos(2\theta)) d\theta \\
+&= \frac{1}{2} \int_{\frac{\pi}{3}}^{\pi} (24 + 32\cos\theta + 8\cos(2\theta)) d\theta \\
+&= \frac{1}{2} \left[ 24\theta + 32\sin\theta + 4\sin(2\theta) \right]_{\frac{\pi}{3}}^{\pi} \\
+&= \frac{1}{2} \left[ (24\pi + 32\sin\pi + 4\sin(2\pi)) - (24\cdot\frac{\pi}{3} + 32\sin\frac{\pi}{3} + 4\sin\frac{2\pi}{3}) \right] \\
+&= \frac{1}{2} \left[ 24\pi - (8\pi + 32\cdot\frac{\sqrt{3}}{2} + 4\cdot\frac{\sqrt{3}}{2}) \right] \\
+&= \frac{1}{2} \left[ 24\pi - 8\pi - 16\sqrt{3} - 2\sqrt{3} \right] \\
+&= \frac{1}{2} \left[ 16\pi - 18\sqrt{3} \right] \\
+&= 8\pi - 9\sqrt{3}
+\end{align*}
+Jadi, luas daerah yang di dalam kedua kurva tersebut adalah dua kali $L_1 + L_2$ sebagai berikut:
+\begin{align*}
+A &= 2(L_1 + L_2) \\
+&= 2(6\pi + 8\pi - 9\sqrt{3}) \\
+&= 2(14\pi - 9\sqrt{3}) \\
+&= 28\pi - 18\sqrt{3}
+\end{align*}
         }
         \end{jawab}
     
@@ -340,15 +427,22 @@ x= 1 cm, y=1 cm,
         Gunakan uji Rasio untuk menentukan konvergen atau divergen dari deret tersebut.\\
         \begin{jawab}
             [deret, uji rasio]{\\
-                Untuk mendapatkan lima suku pertama dari deret tersebut, kita substitusi nilai $n$ dari 1 hingga 5:
+                Misalkan $a_n = \frac{n!}{5+n}$. Maka, lima suku pertama dari deret tersebut dapat dihitung sebagai berikut:
                 \begin{align*}
                     a_1 &= \frac{1!}{5+1} = \frac{1}{6} \\
                     a_2 &= \frac{2!}{5+2} = \frac{2}{7} \\
                     a_3 &= \frac{3!}{5+3} = \frac{6}{8} = \frac{3}{4} \\
-                    a_4 &= \frac{4!}{5+4} = \frac{24}{9} = \frac{8}{3} \\
+                    a_4 &= \frac{4!}{5+4} = \frac{24}{9} \\
                     a_5 &= \frac{5!}{5+5} = \frac{120}{10} = 12
                 \end{align*}
-                Jadi, lima suku pertama dari deret tersebut adalah $\frac{1}{6}, \frac{2}{7}, \frac{3}{4}, \frac{8}{3}, 12$.
+                % \begin{align*}
+                %     S_1 &= a_1 = \frac{1!}{5+1} = \frac{1}{6} \\
+                %     S_2 &= S_1 + a_2 = \frac{1}{6} + \frac{2!}{5+2} = \frac{19}{42} \\
+                %     S_3 &= S_2 + a_3 = \frac{19}{42} + \frac{3!}{5+3} = \frac{101}{84} \\
+                %     S_4 &= S_3 + a_4 = \frac{101}{84} + \frac{4!}{5+4} = \frac{325}{84} \\
+                %     S_5 &= S_4 + a_5 = \frac{325}{84} + \frac{5!}{5+5} = \frac{1333}{84}
+                % \end{align*}
+                Jadi, lima suku pertama dari deret tersebut adalah $\frac{1}{6}, \frac{2}{7}, \frac{3}{4}, \frac{24}{9}, 12$.
 
                 Selanjutnya, kita gunakan uji rasio untuk menentukan konvergensi atau divergensi dari deret tersebut. Uji rasio menyatakan bahwa jika
                 \begin{align*}
@@ -359,12 +453,15 @@ x= 1 cm, y=1 cm,
                 Jika $L > 1$, deret divergen.
                 Jika $L = 1$, uji tidak menentukan.
 
-                Kita hitung $L$:
+                Didapatkan bahwa
+                \allowdisplaybreaks
                 \begin{align*}
-                    L &= \lim_{n\to\infty} \left|\frac{\frac{(n+1)!}{5+(n+1)}}{\frac{n!}{5+n}}\right| 
-                    = \lim_{n\to\infty} \left|\frac{(n+1)! (5+n)}{n! (5+(n+1))}\right| 
-                    = \lim_{n\to\infty} \left|\frac{(n+1)(5+n)}{5+n+1}\right| 
-                    = \lim_{n\to\infty} (n+1) = \infty
+                    L = \lim_{n\to\infty} \left|\frac{\frac{(n+1)!}{5+(n+1)}}{\frac{n!}{5+n}}\right| 
+                    &= \lim_{n\to\infty} \left|\frac{(n+1)! (5+n)}{n! (5+(n+1))}\right| \\
+                    &= \lim_{n\to\infty} \left|\frac{(n+1)(5+n)}{5+n+1}\right| \\
+                    &= \lim_{n\to\infty} \frac{n^2+6n+5}{n+6} \\
+                    &= \lim_{n\to\infty} \qty(n +\frac{5}{n+6})\\ 
+                    &= \infty
                 \end{align*}
                 Karena $L = \infty > 1$, maka deret tersebut divergen.
             }
