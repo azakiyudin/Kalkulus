@@ -1,3 +1,4 @@
+
 \documentclass[10pt,openany,a4paper]{article}
 \usepackage{tikz, pgfplots, tkz-euclide,calc}
 \usetikzlibrary{patterns,shapes.arrows,calc}
@@ -324,7 +325,7 @@ Diperhatikan pula bahwa daerah di atas sumbu-$x$ dibatasi oleh kurva $r=6$ untuk
 \pgfplotsset{set layers}
   \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
     \addplot[domain=0:360,samples=300, color=red] {6};
-    \node at (axis cs:30,4) {\large{$L_1$}};
+    \node at (axis cs:30,4) {\Large{$L_1$}};
     \addplot[domain=0:60,opacity=0, save path=\apa] {6} -- (axis cs:60,0)
 -- (axis cs:0,0)
 -- cycle;
@@ -469,6 +470,231 @@ A &= 2(L_1 + L_2) \\
     
 
 \end{enumerate}
-\end{document}
+\newpage
+        \begin{enumerate}
+            \item Diberikan daerah homogen yang dibatasi oleh lingkaran bagian atas $y=\sqrt{1-(x-1)^2}$ dan sumbu-$x$. (Sketsa dataran diberikan gambar di bawah ini). Dapatkan titik berat dari dataran tersebut.\\
+            \begin{jawab}
+                [titik berat, integral tentu, grafik fungsi]{\\
+                    Diperhatikan bahwa kurva tersebut dapat dinyatakan dalam bentuk persamaan lingkaran sebagai berikut:
+\begin{align*}
+y^2 = 1 - (x-1)^2 \qquad \Longleftrightarrow \qquad (x-1)^2 + y^2 = 1
+\end{align*}
+Jadi, kurva tersebut merupakan lingkaran dengan pusat di $(1, 0)$ dan jari-jari $1$. Berikut ini adalah sketsa dari kurva tersebut, yaitu lingkaran bagian atas yang dibatasi oleh sumbu-$x$.
+    \begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+x =2 cm, y=2 cm,
+axis lines=middle,
+xmin=-0.8,xmax=3,ymin=-0.5,ymax=1.5,
+xtick={0,1,2},
+ytick={0,1},
+xlabel=$x$,
+ylabel=$y$]
+\addplot [domain=0:2,samples=1000] {sqrt(1-(x-1)^2)};
+%Node titik berat di (1, 4/(3*pi))
+\addplot[mark=*] coordinates {(1, 0.4244)} node[above] {$(\overline{x}, \overline{y})$};
+\end{axis}
+\end{tikzpicture}
+    \end{center}
+Diperhatikan bahwa daerah tersebut simetri terhadap garis vertikal $x=1$, sehingga $\overline{x}=1$. Selanjutnya, kita dapat menghitung $\overline{y}$ menggunakan rumus berikut:
+\begin{align*}
+\overline{y} &= \frac{\cfrac{1}{2}\displaystyle\int_{a}^{b} \left(f(x)^2 - g(x)^2\right) dx}{\displaystyle\int_{a}^{b} \left(f(x) - g(x)\right) dx}\\
+&= \frac{\cfrac{1}{2}\displaystyle\int_{0}^{2} \left(\sqrt{1-(x-1)^2}\right)^2 - 0^2 dx}{\displaystyle\int_{0}^{2} \sqrt{1-(x-1)^2} - 0 dx}\\
+&= \frac{\cfrac{1}{2}\displaystyle\int_{0}^{2} 1-(x-1)^2 dx}{\displaystyle\int_{0}^{2} \sqrt{1-(x-1)^2} dx}
+\end{align*}
+Kita dapat menghitung integral pada pembilang dan penyebut secara terpisah. Pertama, kita hitung integral pada pembilang:
+\allowdisplaybreaks
+\begin{align*}
+\int_{0}^{2} \left(1-(x-1)^2\right) dx &= \int_{0}^{2} \left(1 - (x^2 - 2x + 1)\right) dx \\
+&= \int_{0}^{2} \left(2x - x^2\right) dx \\
+&= \left[x^2 - \frac{x^3}{3}\right]_{0}^{2} \\
+&= \left(4 - \frac{8}{3}\right) - (0 - 0) \\
+&= \frac{4}{3}
+\end{align*}
+Selanjutnya, diperhatikan bahwa integral pada penyebut menyatakan luas dari daerah yang dibatasi oleh kurva tersebut, yaitu luas setengah lingkaran dengan jari-jari $1$. Didapatkan bahwa penyebutnya adalah $\frac{1}{2}\pi\cdot 1^2 = \frac{\pi}{2}$. Dengan demikian, 
+\begin{align*}
+\overline{y} &= \frac{\frac{1}{2}\cdot\frac{4}{3}}{\frac{\pi}{2}} \\
+&= \frac{\frac{2}{3}}{\frac{\pi}{2}} \\
+&= \frac{4}{3\pi}
+\end{align*}
+Jadi, titik berat dari dataran tersebut adalah $\left(1, \frac{4}{3\pi}\right)$.
+                }
+            \end{jawab}
+            \item[2.] Diketahui bidang datar segitiga dibatasi oleh garis-garis $2x+3y=6$ dan $2x-3y=6$ dan sumbu-$y$.
+            \begin{enumerate}
+                \item Sketsa bidang datarnya.
+                \item Hitung volumenya jika bidang segitiga tersebut diputar pada sumbu-$y$.
+            \end{enumerate}
+            \begin{jawab}
+                [grafik fungsi, volume benda putar, metode cakram]{\\
+                    Untuk menggambar kurvanya, kita perlu mencari titik potong antara garis $2x+3y=6$ dan $2x-3y=6$ dengan menyamakan kedua persamaan tersebut:
+\begin{align*}
+2x + 3y = 2x-3y \qquad \Longleftrightarrow \qquad 6y = 0 \qquad \Longleftrightarrow \qquad y = 0
+\end{align*}
+Kemudian, dengan mensubstitusi $y=0$ ke salah satu persamaan, misalnya $2x+3y=6$, kita dapatkan nilai $x=3$. Jadi, titik potong antara kedua garis tersebut adalah $(3, 0)$. Berikut ini adalah sketsa dari kedua garis tersebut, yaitu garis $2x+3y=6$ dan $2x-3y=6$, serta daerah yang diarsir yang merupakan daerah segitiga yang dibatasi oleh kedua garis tersebut dan sumbu-$y$.
+    \begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+x =1.3 cm, y=1.3 cm,
+axis lines=middle,
+xmin=-0.8,xmax=5,ymin=-3,ymax=3,
+xtick distance=1,
+ytick distance=1,
+xlabel=$x$,
+ylabel=$y$
+]
+% Garis 2x + 3y = 6
+\addplot [red,domain=0:3, samples=1000, name path=A] {2-2/3*x};
+\addplot [red,domain=-1:0, samples=1000] {2-2/3*x};
+\addplot [red,domain=3:6, samples=1000] {2-2/3*x};
+% Garis 2x - 3y = 6
+\addplot [blue,domain=0:3, samples=1000, name path=B] {-2+2/3*x};
+\addplot [blue,domain=-1:0, samples=1000] {-2+2/3*x};
+\addplot [blue,domain=3:6, samples=1000] {-2+2/3*x};
+% Daerah arsiran
+\addplot[gray,opacity=0.2] fill between[of=A and B, soft clip={domain=0:3}];
+% Node garis 2x + 3y = 6
+\draw[red] (1,1.5) node[right] {$2x+3y=6$};
+% Node garis 2x - 3y = 6
+\draw[blue] (1,-1.5) node[right] {$2x-3y=6$};
+% Node sumbu putar y=0
+\draw[thick,->]
+(-0.15,2.35)
+arc[start angle=230,end angle=-75,radius=0.2];
+%partisi
+\draw (0.85,2-2/3*0.85) -- (0.85,-2+2/3*0.85);
+\draw (0.865,2-2/3*0.865) -- (0.865,-2+2/3*0.865);
+%Penanda jari-jari
+\draw[dashed,<->] (0,0.3) -- (0.85,0.3);
+\node at (0.4,0.48) {$r$};
+%Penanda tinggi
+\draw[dashed,<->] (1.65,-2+2/3*1.65) -- (1.65,2-2/3*1.65);
+\node at (1.78,0.2) {$h$};
+\end{axis}
+\end{tikzpicture}
+    \end{center}
+    Diamati bahwa $2x+3y=6$ dapat diubah menjadi $y=2-\frac{2}{3}x$, dan $2x-3y=6$ dapat diubah menjadi $y=-2+\frac{2}{3}x$.\\
+    Terlihat bahwa daerah segitiga tersebut dibatasi oleh garis $2x+3y=6$ untuk $x$ dari $0$ hingga $3$ di bagian atas, dan dibatasi oleh garis $2x-3y=6$ untuk $x$ dari $0$ hingga $3$ di bagian bawah. Oleh karena itu, akan lebih mudah jika kita mengambil partisi yang sejajar dengan sumbu putar, yaitu garis vertikal yang memotong daerah tersebut. \\
+    Diperhatikan bahwa jari-jari $r$ adalah jarak dari sumbu putar ke partisinya, yaitu $r = x$, dan tinggi $h$ adalah jarak antara kedua garis tersebut, yaitu $h = \qty(2-\frac{2}{3}x) - \qty(-2+\frac{2}{3}x) = 4 - \frac{4}{3}x$. Kemudian, kita dapat menghitung volume benda padat yang diperoleh dari perputaran daerah tersebut menggunakan metode cakram sebagai berikut:
+\allowdisplaybreaks
+\begin{align*}
+V &=  \int_{a}^{b} 2\pi r h dx\\
+&=  \int_{0}^{3} 2\pi x \qty(4 - \frac{4}{3}x) dx \\
+&=  \int_{0}^{3} 2\pi (4x - \frac{4}{3}x^2) dx \\
+&=  2\pi \int_{0}^{3} (4x - \frac{4}{3}x^2) dx \\
+&=  2\pi \left[ 2x^2 - \frac{4}{9}x^3 \right]_{0}^{3} \\
+&=  2\pi \left[ (2\cdot 3^2 - \frac{4}{9}\cdot 3^3) - (0 - 0) \right] \\
+&=  2\pi \left[ (18 - 12) \right] \\
+&=  2\pi \cdot 6 \\
+&= 12\pi
+\end{align*}
+                }
+            \end{jawab}
+        \item[3.] Tentukan luas daerah di luar lingkaran $r=6$ dan di dalam kardioda $r=4+4\cos \theta$. Sketsa bidang datarnya
+        \\
+        \begin{jawab}
+            [grafik fungsi polar, integral fungsi trigonometri, luas daerah di dalam kurva polar]{
+             \\
+             Untuk menggambar kurvanya, kita perlu mencari titik potong antara kurva $r=6$ dan $r=4+4\cos\theta$ dengan menyamakan kedua persamaan tersebut:
+\begin{align*}
+6 = 4 + 4\cos\theta \qquad \Longleftrightarrow \qquad 4\cos\theta = 2 \qquad \Longleftrightarrow \qquad \cos\theta = \frac{1}{2}
+\end{align*}
+Kemudian, kita dapatkan nilai $\theta$ sebagai berikut:
+\begin{align*}
+\theta = \pm \frac{\pi}{3} + 2k\pi, \quad k \in \mathbb{Z}
+\end{align*}
+Jadi, titik potong antara kedua kurva tersebut terjadi pada $\theta = \frac{\pi}{3}$ dan $\theta = -\frac{\pi}{3}$. Berikut ini adalah sketsa dari kedua kurva tersebut, yaitu lingkaran $r=6$ dan kardioda $r=4+4\cos\theta$, serta daerah yang diarsir yang merupakan daerah di luar lingkaran $r=6$ dan di dalam kardioda $r=4+4\cos\theta$.
+    \begin{center}
+        \begin{tikzpicture}
+\pgfplotsset{set layers}
+  \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
+    \addplot[domain=0:360,samples=300, color=red] {6};
+    \addplot[domain=0:60,opacity=0, save path=\A] {6} -- (axis cs:60,0)
+-- (axis cs:0,0)
+-- cycle;
+    \addplot[domain=60:300,opacity=0, save path=\B] {4+4*cos(x)} -- (axis cs:300,0)
+-- (axis cs:0,0)
+-- cycle;
+    \pgfonlayer{axis background}
+    \fill[gray!20, even odd rule, reuse path=\A];
+    \fill[gray!20, reuse path=\B];
+    \endpgfonlayer
+    \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
+  \end{polaraxis}
+    \end{tikzpicture}
+    \end{center}
+    Diperhatikan bahwa daerah tersebut simetri terhadap sumbu-$x$, sehingga kita dapat menghitung luas daerah tersebut dengan menghitung luas daerah di atas sumbu-$x$ dan kemudian mengalikannya dengan 2. \\
+Diperhatikan pula bahwa daerah di atas sumbu-$x$ berada di antara kurva $r=6$ dan kurva $r=4+4\cos\theta$ untuk $\theta$ dari $\frac{\pi}{3}$ hingga $\pi$. Luas daerah tersebut adalah luas daerah dari $r=4+4\cos\theta$ dikurangi luas daerah dari $r=6$ dalam interval yang sama. Berikut adalah visualisasi dari daerah yang akan dihitung luasnya:
+    \begin{center}        \begin{tikzpicture}
+\pgfplotsset{set layers}
+  \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
+    \addplot[domain=0:360,samples=300, color=red] {6};
+    \node at (axis cs:30,4) {\huge{$L_1$}};
+    \addplot[domain=0:60,opacity=0, save path=\apa] {6} -- (axis cs:60,0)   -- (axis cs:0,0)
+-- cycle;
+    \pgfonlayer{axis background}
+    \fill[gray!20, even odd rule, reuse path=\apa];
+    \endpgfonlayer
+    % \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
+  \end{polaraxis}
+    \end{tikzpicture}
+    \begin{tikzpicture}
+\pgfplotsset{set layers}
+  \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
+    % \addplot[domain=0:360,samples=300, color=red] {6};
+    \addplot[domain=0:60,opacity=0, save path=\B] {4+4*cos(x)} -- (axis cs:0,0)   -- (axis cs:60,0)
+-- cycle;
+    \node at (axis cs:30,5) {\huge{$L_2$}};
+    \pgfonlayer{axis background}
+    \fill[gray!20, reuse path=\B];
+    \endpgfonlayer
+    \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
+  \end{polaraxis}
+    \end{tikzpicture}
+    \end{center}
+    Ingat kembali bahwa luas daerah yang dibatasi oleh kurva polar $r=f(\theta)$ dari $\theta=a$ hingga $\theta=b$ dapat dihitung menggunakan rumus berikut:
+\begin{align*}
+A = \frac{1}{2} \int_{a}^{b} f(\theta)^2 d\theta
+\end{align*}
+Dengan menggunakan rumus tersebut, didapatkan luas daerah $L_1$ yang dibatasi oleh kurva $r=6$ untuk $\theta$ dari $0$ hingga $\frac{\pi}{3}$ sebagai berikut:
+\allowdisplaybreaks
+\begin{align*}
+L_1 &= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} 6^2 d\theta \\
+&= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} 36 d\theta \\
+&= 18 \int_{0}^{\frac{\pi}{3}} d\theta \\
+&= 18 \left[ \theta \right]_{0}^{\frac{\pi}{3}} \\
+&= 18 \cdot \frac{\pi}{3} \\
+&= 6\pi
+\end{align*}
+Selanjutnya, didapatkan luas daerah $L_2$ yang dibatasi oleh kurva $r=4+4\cos\theta$ untuk $\theta$ dari $\frac{\pi}{3}$ hingga $\pi$ sebagai berikut:
+\allowdisplaybreaks
+\begin{align*}
+L_2 &= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} (4+4\cos\theta)^2 d\theta \\  
+&= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} (16 + 32\cos\theta + 16\cos^2\theta) d\theta \\
+&= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} (16 + 32\cos\theta + 16\cdot\frac{1+\cos(2\theta)}{2}) d\theta \\
+&= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} (16 + 32\cos\theta + 8 + 8\cos(2\theta)) d\theta \\
+&= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} (24 + 32\cos\theta + 8\cos(2\theta)) d\theta \\
+&= \frac{1}{2} \left[ 24\theta + 32\sin\theta + 4\sin(2\theta) \right]_{0}^{\frac{\pi}{3}} \\
+&= \frac{1}{2} \left[ (24\cdot\frac{\pi}{3} + 32\sin\frac{\pi}{3} + 4\sin\frac{2\pi}{3}) - (0 + 0 + 0) \right] \\
+&= \frac{1}{2} \left[ 8\pi + 32\cdot\frac{\sqrt{3}}{2} + 4\cdot\frac{\sqrt{3}}{2} \right] \\
+&= \frac{1}{2} \left[ 8\pi + 16\sqrt{3} + 2\sqrt{3} \right] \\
+&= \frac{1}{2} \left[ 8\pi + 18\sqrt{3} \right] \\
+&= 4\pi + 9\sqrt{3}
+\end{align*}
+Dengan demikian, luas daerah di luar lingkaran $r=6$ dan di dalam kardioda $r=4+4\cos\theta$ adalah $L=2(L_2-L1) = 2((4\pi + 9\sqrt{3}) - 6\pi) = 18\sqrt{3}-4\pi$.
+            }
+            \end{jawab}
+            \item[4.] Tentukan lima suku pertama barisan yang diberikan di bawah ini. Tentukan pula apakah barisan ini konvergen atau divergen. Jika konvergen dapatkan nilai kekonvergenannya
+            \begin{align*}
+                \left\{\frac{n}{3n+1}\right\}^{+\infty}_{n=1}
+            \end{align*}
+            \item[5.] Diketahui fungsi $f(x)=(1+x)^{-1}$.
+            \begin{enumerate}
+                \item Dapatkan turunan ke $n$, $f^{(n)}(x)$, $n=1,2,3,4,5,6$.
+                \item Dapatkan deret Maclaurin untuk fungsi $f(x)=(1+x)^{-1}$.
+                \item Gunakan hasil $(b)$ untuk mendapatkan deret Maclaurin $f(x)=x(1+x)^{-1}$
+            \end{enumerate}
+            \end{enumerate}
+            \end{document}
 
 

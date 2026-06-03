@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  3 JUN 2026 08:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  3 JUN 2026 08:22
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1154,7 +1154,7 @@ File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 LaTeX Warning: Unused global option(s):
     [openany].
 
-No file tikz/main-figure3.aux.
+No file tikz/main-figure7.aux.
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
 LaTeX Font Info:    ... okay on input line 112.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
@@ -1308,7 +1308,15 @@ A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
-\openout4 = `tikz/main-figure3.dpth'.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
+isable this.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
+isable this.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
+isable this.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
+isable this.
+\openout4 = `tikz/main-figure7.dpth'.
 
 \pgf@layerbox@axis background=\box135
 \pgf@layerboxsaved@axis background=\box136
@@ -1326,53 +1334,36 @@ isable this.
 \pgf@layerboxsaved@axis descriptions=\box148
 \pgf@layerbox@axis foreground=\box149
 \pgf@layerboxsaved@axis foreground=\box150
-Package pgfplots info on input line 387: Setting layers 'axis background,axis g
+Package pgfplots info on input line 659: Setting layers 'axis background,axis g
 rid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis
  foreground'...
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 387.
-[3
+[8
 
 {C:/Users/jekiyudin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Progra
 m Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/
-dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
-c}]
+dvips/lm/lm-mathsy.enc}]
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
-A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
-isable this.
-A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
-isable this.
-A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
-isable this.
-A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
-isable this.
-
-Overfull \hbox (50.34726pt too wide) detected at line 684
-[]
- []
-
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 45490 strings out of 467690
- 1097811 string characters out of 5425021
- 1658651 words of memory out of 5000000
- 73727 multiletter control sequences out of 15000+600000
- 651132 words of font info for 68 fonts, out of 8000000 for 9000
+ 45499 strings out of 467690
+ 1098092 string characters out of 5425021
+ 1698466 words of memory out of 5000000
+ 73739 multiletter control sequences out of 15000+600000
+ 646832 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,13n,110p,1229b,2553s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/M
-iKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/lm/lmsy7.pfb>
-Output written on tikz/main-figure3.pdf (1 page, 39612 bytes).
+ 106i,13n,110p,1229b,2539s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/Mi
+KTeX/fonts/type1/public/lm/lmsy7.pfb>
+Output written on tikz/main-figure7.pdf (1 page, 38764 bytes).
 PDF statistics:
- 40 PDF objects out of 1000 (max. 8388607)
+ 34 PDF objects out of 1000 (max. 8388607)
  1 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
