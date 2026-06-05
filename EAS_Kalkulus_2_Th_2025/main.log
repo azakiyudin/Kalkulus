@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  5 JUN 2026 16:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  5 JUN 2026 17:02
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1123,7 +1123,7 @@ l.355       }
 ===== Image 'tikz/main-figure3' is up-to-date. ======
 ===== Image 'tikz/main-figure4' is up-to-date. ======
 [3 <./tikz/main-figure2.pdf>] [4 <./tikz/main-figure3.pdf> <./tikz/main-figure4.pdf>] [5]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 584.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 587.
  (C:\Program Files\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [6{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
@@ -1151,9 +1151,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  102i,13n,107p,1230b,1402s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (14 pages, 535926 bytes).
+Output written on main.pdf (14 pages, 539327 bytes).
 PDF statistics:
- 337 PDF objects out of 1000 (max. 8388607)
+ 344 PDF objects out of 1000 (max. 8388607)
  31 named destinations out of 1000 (max. 500000)
  63 words of extra memory for PDF output out of 10000 (max. 10000000)
 

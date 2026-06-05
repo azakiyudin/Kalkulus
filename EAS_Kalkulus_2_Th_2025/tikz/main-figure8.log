@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  5 JUN 2026 11:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  5 JUN 2026 17:01
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1272,32 +1272,32 @@ Package gensymb Info: Using \Omega for \ohm on input line 112.
 Package gensymb Warning: Not defining \micro.
 
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-17.
+79.
 (C:\Program Files\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-117.
+179.
 (C:\Program Files\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-117.
+179.
 (C:\Program Files\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 117.
+(Font)              <10> on input line 179.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 117.
+(Font)              <7> on input line 179.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 117.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 117
+(Font)              <5> on input line 179.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 179
 .
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 117
+LaTeX Font Info:    Trying to load font information for U+msb on input line 179
 .
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1313,7 +1313,7 @@ isable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 5
-22.
+87.
 (C:\Program Files\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1341,15 +1341,11 @@ isable this.
 \pgf@layerboxsaved@axis descriptions=\box148
 \pgf@layerbox@axis foreground=\box149
 \pgf@layerboxsaved@axis foreground=\box150
-Package pgfplots info on input line 766: Setting layers 'axis background,axis g
+Package pgfplots info on input line 840: Setting layers 'axis background,axis g
 rid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis
  foreground'...
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <20.74> on input line 766.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 766.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 766.
+(Font)              <14.4> on input line 840.
 [8
 
 {C:/Users/jekiyudin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Progra
@@ -1364,19 +1360,19 @@ L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 45551 strings out of 467690
- 1099226 string characters out of 5425021
- 1662274 words of memory out of 5000000
- 73783 multiletter control sequences out of 15000+600000
- 660112 words of font info for 81 fonts, out of 8000000 for 9000
+ 45545 strings out of 467690
+ 1099201 string characters out of 5425021
+ 1662920 words of memory out of 5000000
+ 73776 multiletter control sequences out of 15000+600000
+ 663317 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,13n,110p,1229b,2572s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/M
-iKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on tikz/main-figure8.pdf (1 page, 55378 bytes).
+ 106i,13n,110p,1229b,2574s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/M
+iKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
+lic/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
+Output written on tikz/main-figure8.pdf (1 page, 43984 bytes).
 PDF statistics:
- 47 PDF objects out of 1000 (max. 8388607)
+ 49 PDF objects out of 1000 (max. 8388607)
  1 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

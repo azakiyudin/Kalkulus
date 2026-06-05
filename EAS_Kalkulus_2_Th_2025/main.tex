@@ -359,11 +359,11 @@ Didapatkan bahwa jari-jari luar $r_l$ adalah jarak dari sumbu putar ke kurva $y=
              \\
              Untuk menggambar kurvanya, kita perlu mencari titik potong antara kurva $r=6$ dan $r=4+4\cos\theta$ dengan menyamakan kedua persamaan tersebut:
 \begin{align*}
-6 = 4 + 4\cos\theta \qquad \Longleftrightarrow \qquad 4\cos\theta = 2 \qquad \Longleftrightarrow \qquad \cos\theta = \frac{1}{2}
+6 = 4 + 4\cos\theta \qquad \Longleftrightarrow \qquad 4\cos\theta = 2 \qquad \Longleftrightarrow \qquad \cos\theta = \frac{1}{2}.
 \end{align*}
 Kemudian, kita dapatkan nilai $\theta$ sebagai berikut:
 \begin{align*}
-\theta = \pm \frac{\pi}{3} + 2k\pi, \quad k \in \mathbb{Z}
+\theta = \pm \frac{\pi}{3} + 2k\pi, \quad k \in \mathbb{Z}.
 \end{align*}
 Jadi, titik potong antara kedua kurva tersebut terjadi pada\begin{penting}
     []{$\theta = \frac{\pi}{3}$}
@@ -415,13 +415,15 @@ Diperhatikan pula bahwa daerah di atas sumbu-$x$ dibatasi oleh kurva $r=6$ untuk
     \begin{center}
         \begin{tikzpicture}[scale=0.85]
 \pgfplotsset{set layers}
-  \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
+  \begin{polaraxis}[ymax=9,xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
     \addplot[domain=0:360,samples=300, color=red] {6};
     \node at (axis cs:30,4) {\Large{$L_1$}};
     \addplot[domain=0:60,opacity=0, save path=\apa] {6} -- (axis cs:60,0)
 -- (axis cs:0,0)
 -- cycle;
     \pgfonlayer{axis background}
+     \node[red] at (axis cs:90,7) {$r=6$};
+    %Node kurva r=4+4*cos(x)
     \fill[red,opacity=0.15, even odd rule, reuse path=\apa];
     \endpgfonlayer
     % \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
@@ -433,6 +435,7 @@ Diperhatikan pula bahwa daerah di atas sumbu-$x$ dibatasi oleh kurva $r=6$ untuk
     % \addplot[domain=0:360,samples=300, color=red] {6};
     \addplot[domain=60:180,opacity=0, save path=\B] {4+4*cos(x)};
     \node at (axis cs:80,3) {\Large{$L_2$}};
+        \node[blue] at (axis cs:60,7) {$r=4+4\cos\theta$};
     \pgfonlayer{axis background}
     \fill[blue,opacity=0.15, reuse path=\B];
     \endpgfonlayer
@@ -576,7 +579,7 @@ A &= 2(L_1 + L_2) = 2(6\pi + 8\pi - 9\sqrt{3}) = 2(14\pi - 9\sqrt{3}) = \begin{j
                     &= \lim_{n\to\infty} \left|\frac{(n+1)(5+n)}{5+n+1}\right| \\
                     &= \lim_{n\to\infty} \frac{n^2+6n+5}{n+6} \\
                     &= \lim_{n\to\infty} \qty(n +\frac{5}{n+6})\\ 
-                    &= \infty
+                    &= \infty.
                 \end{align*}
                 Karena $L = \infty > 1$, maka deret tersebut\begin{jawaban2}
                     {divergen}
@@ -599,7 +602,7 @@ atau membutuhkan tutor untuk mata kuliah Kalkulus, hubungi saya melalui Instagra
                 [titik berat, integral tentu, grafik fungsi, persamaan lingkaran]{\\
                     Diperhatikan bahwa kurva tersebut dapat dinyatakan dalam bentuk persamaan lingkaran sebagai berikut:
 \begin{align*}
-y^2 = 1 - (x-1)^2 \qquad \Longleftrightarrow \qquad (x-1)^2 + y^2 = 1
+y^2 = 1 - (x-1)^2 \qquad \Longleftrightarrow \qquad (x-1)^2 + y^2 = 1.
 \end{align*}
 Jadi, kurva tersebut merupakan lingkaran dengan \textbf{pusat} di $(1, 0)$ dan \textbf{jari-jari} $1$. Berikut ini adalah sketsa dari kurva tersebut, yaitu lingkaran bagian atas yang dibatasi oleh sumbu-$x$.
     \begin{center}
@@ -643,7 +646,7 @@ Selanjutnya, diperhatikan bahwa integral pada penyebut menyatakan luas dari daer
         \color{blue}
         \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}\frac{\pi}{2}}\color{oldcolor}$. Dengan demikian, 
 \begin{align*}
-\overline{y} = \frac{\frac{1}{2}\cdot\frac{4}{3}}{\frac{\pi}{2}} = \frac{\frac{2}{3}}{\frac{\pi}{2}}= \frac{4}{3\pi}
+\overline{y} = \frac{\frac{1}{2}\cdot\frac{4}{3}}{\frac{\pi}{2}} = \frac{\frac{2}{3}}{\frac{\pi}{2}}= \frac{4}{3\pi}.
 \end{align*}
 Jadi, titik berat dari dataran tersebut adalah $\begin{jawaban}
     {\left(1, \frac{4}{3\pi}\right)}
@@ -659,7 +662,7 @@ Jadi, titik berat dari dataran tersebut adalah $\begin{jawaban}
                 [grafik fungsi, volume benda putar, metode cincin silinder]{\\
                     Untuk menggambar kurvanya, kita perlu mencari titik potong antara garis $2x+3y=6$ dan $2x-3y=6$ dengan menyamakan kedua persamaan tersebut:
 \begin{align*}
-2x + 3y = 2x-3y \qquad \Longleftrightarrow \qquad 6y = 0 \qquad \Longleftrightarrow \qquad y = 0
+2x + 3y = 2x-3y \qquad \Longleftrightarrow \qquad 6y = 0 \qquad \Longleftrightarrow \qquad y = 0.
 \end{align*}
 Kemudian, dengan mensubstitusi $y=0$ ke salah satu persamaan, misalnya $2x+3y=6$, kita dapatkan nilai $x=3$. Jadi, \textbf{titik potong} antara kedua garis tersebut adalah $\colorlet{oldcolor}{.}
         \color{blue}
@@ -739,11 +742,11 @@ V &=  \int_{a}^{b} 2\pi r h dx\\
              \\
              Untuk menggambar kurvanya, kita perlu mencari titik potong antara kurva $r=6$ dan $r=4+4\cos\theta$ dengan menyamakan kedua persamaan tersebut:
 \begin{align*}
-6 = 4 + 4\cos\theta \qquad \Longleftrightarrow \qquad 4\cos\theta = 2 \qquad \Longleftrightarrow \qquad \cos\theta = \frac{1}{2}
+6 = 4 + 4\cos\theta \qquad \Longleftrightarrow \qquad 4\cos\theta = 2 \qquad \Longleftrightarrow \qquad \cos\theta = \frac{1}{2}.
 \end{align*}
 Kemudian, kita dapatkan nilai $\theta$ sebagai berikut:
 \begin{align*}
-\theta = \pm \frac{\pi}{3} + 2k\pi, \quad k \in \mathbb{Z}
+\theta = \pm \frac{\pi}{3} + 2k\pi, \quad k \in \mathbb{Z}.
 \end{align*}
 Jadi, titik potong antara kedua kurva tersebut terjadi pada $\colorlet{oldcolor}{.}
         \color{blue}
@@ -778,13 +781,15 @@ Jadi, titik potong antara kedua kurva tersebut terjadi pada $\colorlet{oldcolor}
 Diperhatikan pula bahwa daerah di atas sumbu-$x$ berada di antara kurva $r=6$ dan kurva $r=4+4\cos\theta$ untuk $\theta$ dari $0$ hingga $\frac{\pi}{3}$. Luas daerah tersebut adalah luas daerah dari $r=4+4\cos\theta$ dikurangi luas daerah dari $r=6$ dalam interval yang sama. Berikut adalah visualisasi dari daerah yang akan dihitung luasnya:
     \begin{center}        \begin{tikzpicture}[scale=0.85]
 \pgfplotsset{set layers}
-  \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
+  \begin{polaraxis}[ymax=9, xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
     \addplot[domain=0:360,samples=300, color=red] {6};
-    \node at (axis cs:30,4) {\huge{$L_1$}};
+    \node at (axis cs:35,4) {\Large{$L_1$}};
     \addplot[domain=0:60,opacity=0, save path=\apa] {6} -- (axis cs:60,0)   -- (axis cs:0,0)
 -- cycle;
+ \node[red] at (axis cs:90,7) {$r=6$};
+    %Node kurva r=4+4*cos(x
     \pgfonlayer{axis background}
-    \fill[gray,opacity=0.2, even odd rule, reuse path=\apa];
+    \fill[red,opacity=0.15, even odd rule, reuse path=\apa];
     \endpgfonlayer
     % \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
   \end{polaraxis}
@@ -795,9 +800,10 @@ Diperhatikan pula bahwa daerah di atas sumbu-$x$ berada di antara kurva $r=6$ da
     % \addplot[domain=0:360,samples=300, color=red] {6};
     \addplot[domain=0:60,opacity=0, save path=\B] {4+4*cos(x)} -- (axis cs:0,0)   -- (axis cs:60,0)
 -- cycle;
-    \node at (axis cs:30,5) {\huge{$L_2$}};
+    \node[blue] at (axis cs:60,7) {$r=4+4\cos\theta$};
+    \node at (axis cs:30,5) {\Large{$L_2$}};
     \pgfonlayer{axis background}
-    \fill[gray,opacity=0.2, reuse path=\B];
+    \fill[blue,opacity=0.15, reuse path=\B];
     \endpgfonlayer
     \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
   \end{polaraxis}
@@ -812,7 +818,7 @@ Dengan menggunakan rumus tersebut, didapatkan luas daerah $L_1$ yang dibatasi ol
 \allowdisplaybreaks
 \begin{align*}
 L_1 &= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} 6^2 d\theta = \frac{1}{2} \int_{0}^{\frac{\pi}{3}} 36 d\theta = 18 \int_{0}^{\frac{\pi}{3}} d\theta = 18 \left[ \theta \right]_{0}^{\frac{\pi}{3}} = 18 \cdot \frac{\pi}{3} = \colorlet{oldcolor}{.}
-        \color{blue}        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}6\pi}\color{oldcolor}
+        \color{blue}        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}6\pi}\color{oldcolor}.
 \end{align*}
 Selanjutnya, didapatkan luas daerah $L_2$ yang dibatasi oleh kurva $r=4+4\cos\theta$ untuk $\theta$ dari $\frac{\pi}{3}$ hingga $\pi$ sebagai berikut:
 \allowdisplaybreaks
@@ -828,7 +834,7 @@ L_2 &= \frac{1}{2} \int_{0}^{\frac{\pi}{3}} (4+4\cos\theta)^2 d\theta \\
 &= \frac{1}{2} \left[ 8\pi + 16\sqrt{3} + 2\sqrt{3} \right] \\
 &= \frac{1}{2} \left[ 8\pi + 18\sqrt{3} \right] \\
 &= \colorlet{oldcolor}{.}
-        \color{blue}        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}4\pi + 9\sqrt{3}}\color{oldcolor}
+        \color{blue}        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}4\pi + 9\sqrt{3}}\color{oldcolor}.
 \end{align*}
 Dengan demikian, luas daerah di luar lingkaran $r=6$ dan di dalam kardioda $r=4+4\cos\theta$ adalah $L=2(L_2-L1) = 2((4\pi + 9\sqrt{3}) - 6\pi) = \begin{jawaban}{18\sqrt{3}-4\pi}\end{jawaban}$
             }
@@ -846,7 +852,7 @@ Dengan demikian, luas daerah di luar lingkaran $r=6$ dan di dalam kardioda $r=4+
                         a_2 &= \frac{2}{3\cdot 2 + 1} = \frac{2}{7} \\
                         a_3 &= \frac{3}{3\cdot 3 + 1} = \frac{3}{10} \\
                         a_4 &= \frac{4}{3\cdot 4 + 1} = \frac{4}{13} \\
-                        a_5 &= \frac{5}{3\cdot 5 + 1} = \frac{5}{16}
+                        a_5 &= \frac{5}{3\cdot 5 + 1} = \frac{5}{16}.
                     \end{align*}
                     Jadi, lima suku pertama dari barisan tersebut adalah $\begin{jawaban}{\frac{1}{4}, \frac{2}{7}, \frac{3}{10}, \frac{4}{13}, \frac{5}{16}}\end{jawaban}$
 
@@ -861,7 +867,7 @@ Dengan demikian, luas daerah di luar lingkaran $r=6$ dan di dalam kardioda $r=4+
                     \end{align*}
                     Saat $n$ mendekati tak hingga, $\frac{1}{n}$ mendekati $0$, sehingga kita dapatkan:
                     \begin{align*}
-                        L = \frac{1}{3 + 0} = \frac{1}{3}
+                        L = \frac{1}{3 + 0} = \frac{1}{3}.
                     \end{align*}
                     Karena limitnya adalah $\frac{1}{3}$, maka barisan tersebut \textbf{konvergen} dan nilai kekonvergenannya adalah $\begin{jawaban}{\frac{1}{3}}\end{jawaban}$
                 }
@@ -883,7 +889,7 @@ Dengan demikian, luas daerah di luar lingkaran $r=6$ dan di dalam kardioda $r=4+
                             f'''(x) &= -6(1+x)^{-4} = (-1)^3(3!)(1+x)^{-4} \\
                             f^{(4)}(x) &= 24(1+x)^{-5} = (-1)^4(4!)(1+x)^{-5} \\
                             f^{(5)}(x) &= -120(1+x)^{-6} = (-1)^5(5!)(1+x)^{-6} \\
-                            f^{(6)}(x) &= 720(1+x)^{-7} = (-1)^6(6!)(1+x)^{-7}
+                            f^{(6)}(x) &= 720(1+x)^{-7} = (-1)^6(6!)(1+x)^{-7}.
                         \end{align*}
                     
                         \item Deret Maclaurin untuk fungsi $f(x)$ dapat diperoleh dengan menggunakan rumus berikut:
@@ -893,7 +899,7 @@ Dengan demikian, luas daerah di luar lingkaran $r=6$ dan di dalam kardioda $r=4+
                         \end{align*}
                         Diperhatikan bahwa berdasarkan pola yang muncul dari turunan sebelumnya, kita dapat menyatakan turunan ke $n$ dari fungsi $f(x)$ sebagai berikut:
                         \begin{align*}
-                            f^{(n)}(x) = (-1)^n n! (1+x)^{-n-1}
+                            f^{(n)}(x) = (-1)^n n! (1+x)^{-n-1}.
                         \end{align*}
                         sehingga kita dapat menghitung nilai dari $f^{(n)}(0)$ sebagai berikut:
                         \begin{align*}
