@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  3 JUN 2026 08:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.19)  5 JUN 2026 11:13
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1312,6 +1312,11 @@ A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 5
+22.
+(C:\Program Files\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
@@ -1338,44 +1343,40 @@ isable this.
 \pgf@layerboxsaved@axis descriptions=\box148
 \pgf@layerbox@axis foreground=\box149
 \pgf@layerboxsaved@axis foreground=\box150
-Package pgfplots info on input line 684: Setting layers 'axis background,axis g
+Package pgfplots info on input line 766: Setting layers 'axis background,axis g
 rid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis
  foreground'...
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <20.74> on input line 684.
+(Font)              <20.74> on input line 766.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 684.
+(Font)              <14.4> on input line 766.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 684.
+(Font)              <12> on input line 766.
 [8
 
 {C:/Users/jekiyudin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Progra
 m Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/fonts/enc/
 dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
 c}]
-Overfull \hbox (50.34726pt too wide) detected at line 684
-[]
- []
-
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 45523 strings out of 467690
- 1098426 string characters out of 5425021
- 1670380 words of memory out of 5000000
- 73759 multiletter control sequences out of 15000+600000
- 659747 words of font info for 80 fonts, out of 8000000 for 9000
+ 45569 strings out of 467690
+ 1099622 string characters out of 5425021
+ 1673052 words of memory out of 5000000
+ 73801 multiletter control sequences out of 15000+600000
+ 660112 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,13n,110p,1229b,2555s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 106i,13n,110p,1229b,2569s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
 ic/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on tikz/main-figure9.pdf (1 page, 58754 bytes).
+Output written on tikz/main-figure9.pdf (1 page, 58811 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
+ 47 PDF objects out of 1000 (max. 8388607)
  1 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
