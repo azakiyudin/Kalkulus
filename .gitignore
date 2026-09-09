@@ -6,6 +6,7 @@
 *.lof
 *.lot
 *.bbl
+*.auxlock
 *.blg
 *.fls
 *.fdb_latexmk
