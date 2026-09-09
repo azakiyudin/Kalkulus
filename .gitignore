@@ -18,4 +18,5 @@
 *.vrb
 
 # TikZ externalization files
-tikz/
+**/tikz/
+**/.vscode/
