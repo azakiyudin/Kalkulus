@@ -1,0 +1,690 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[indonesian]{babel}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\geometry{margin=2.5cm}
+
+\title{Derivasi PDE Mundur untuk Harga Klaim Derivatif melalui Formula Feynman--Kac}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Ringkasan Eksekutif}
+
+Laporan ini menyajikan derivasi Persamaan Diferensial Parsial (PDE) mundur untuk harga klaim derivatif dengan menggunakan formula Feynman--Kac, sehingga persamaan stokastik dalam file pengguna (Pers.~(2) dan (5)) ditransformasikan menjadi PDE target (secara analogi dengan Pers.~(8) pada referensi lain).
+
+Kita mulai dengan mengekstrak notasi dan persamaan kunci dari file pengguna (termasuk Pers.~(4) yang memuat $f(t,Y,Z)$). Selanjutnya dibangun dinamika SDE dua variabel $(X_t,Y_t)$ sesuai notasi paper, dihitung generator infinitesimal menggunakan Teorema It\^o, dan dituliskan PDE mundur:
+
+\[
+\partial_t V+\mathcal L V-rV=0.
+\]
+
+Laporan ini memetakan setiap suku dari SDE (2) dan (5) ke dalam suku-suku PDE akhir serta mengidentifikasi fungsi driver:
+
+\[
+f(t,Y,Z)=-rY-\theta Z.
+\]
+
+Selain itu dibahas beberapa kasus khusus (misalnya $Y$ deterministik versus stokastik, korelasi antar Brownian motion, dan perubahan ukuran risiko), berikut asumsi regularitas yang diperlukan seperti kelas $C^{2,1}$ dan sifat Markov.
+
+Sebagai pelengkap disertakan metode numerik (finite difference, ADI, method of lines, dan Monte Carlo berbasis Feynman--Kac), contoh kerja dengan proses Ornstein--Uhlenbeck, tabel perbandingan asumsi terhadap bentuk PDE, serta diagram alir derivasi.
+
+\section{Persamaan Kunci dalam File Pengguna}
+
+Dari file pengguna (BSDE untuk opsi), diperoleh persamaan berikut.
+
+\subsection*{Persamaan (4)}
+
+Persamaan stokastik diberikan oleh
+
+\begin{equation}
+dY(t)=\bigl(rY(t)+\theta Z(t)\bigr)\,dt+Z(t)\,dW(t),
+\qquad
+Y(0)=y_0.
+\tag{4}
+\end{equation}
+
+\subsection*{Persamaan (5)--(6)}
+
+Fungsi driver BSDE diberikan oleh
+
+\begin{equation}
+f(t,Y(t),Z(t))
+=
+-rY(t)-\theta Z(t).
+\end{equation}
+
+Diasumsikan kondisi terminal
+
+\[
+Y(T)=\xi(X(T)).
+\]
+
+Persamaan (2) diasumsikan merepresentasikan dinamika aset $S(t)$ dan $B(t)$ yang menghasilkan dinamika portofolio $Y$.
+
+Fokus utama derivasi PDE adalah Pers.~(4) dan identifikasi fungsi driver.
+
+\section{Model SDE dan Generator Infinitesimal}
+
+Definisikan proses stokastik dua dimensi:
+
+\[
+(X_t,Y_t)
+\]
+
+di bawah ukuran risk-neutral $\mathbb Q$.
+
+\subsection*{Dinamika Variabel $X_t$}
+
+\begin{equation}
+dX_t
+=
+a(X_t,t)\,dt
++
+b(X_t,t)\,dW_t^{\mathbb Q},
+\end{equation}
+
+dengan:
+
+\begin{itemize}
+\item $a(x,t)$ : drift,
+\item $b(x,t)$ : volatilitas.
+\end{itemize}
+
+Sebagai contoh pada model Ornstein--Uhlenbeck:
+
+\[
+a(x,t)=k(\theta-x),
+\qquad
+b(x,t)=\sigma.
+\]
+
+\subsection*{Dinamika Variabel $Y_t$}
+
+\begin{equation}
+dY_t
+=
+f(t,Y_t,Z_t)\,dt
++
+Z_t\,dW_t^{\mathbb Q}.
+\end{equation}
+
+Dari Pers.~(4):
+
+\[
+dY=(rY+\theta Z)\,dt+Z\,dW.
+\]
+
+Jika ditulis dalam bentuk BSDE standar:
+
+\[
+dY=-f\,dt+Z\,dW,
+\]
+
+maka:
+
+\[
+f(t,Y,Z)
+=
+-rY-\theta Z.
+\]
+
+\subsection*{Generator Infinitesimal}
+
+Untuk fungsi nilai
+
+\[
+V=V(t,x,y),
+\]
+
+generator infinitesimalnya adalah
+
+\begin{align}
+\mathcal LV
+&=
+a(x,t)V_x
++
+f(t,y,z)V_y
++
+\frac12 b(x,t)^2V_{xx}
+\nonumber\\
+&\quad+
+\frac12 c(y,t)^2V_{yy}
++
+\rho\,b(x,t)c(y,t)V_{xy}.
+\end{align}
+
+Jika $Y$ tidak berdifusi maka:
+
+\[
+c(y,t)=0,
+\]
+
+sehingga suku:
+
+\[
+V_{yy},
+\qquad
+V_{xy}
+\]
+
+menghilang.
+
+\section{Turunan PDE melalui Formula Feynman--Kac}
+
+Menurut teorema Feynman--Kac, PDE mundur diberikan oleh:
+
+\begin{equation}
+\frac{\partial V}{\partial t}
++
+\mathcal LV
+-rV
+=
+0,
+\end{equation}
+
+dengan kondisi terminal
+
+\[
+V(T,x,y)=g(x,y).
+\]
+
+Substitusi generator menghasilkan:
+
+\begin{align}
+\partial_tV
+&+
+a(x,t)V_x
++
+f(t,y,z)V_y
++
+\frac12 b(x,t)^2V_{xx}
+\nonumber\\
+&+
+\frac12 c(y,t)^2V_{yy}
++
+\rho b(x,t)c(y,t)V_{xy}
+-rV
+=
+0.
+\end{align}
+
+Untuk kasus file pengguna diperoleh:
+
+\begin{equation}
+\partial_tV
++
+a(x,t)V_x
++
+(ry+\theta z)V_y
++
+\frac12 b(x,t)^2V_{xx}
+-rV
+=
+0.
+\end{equation}
+
+dengan kondisi terminal
+
+\[
+V(T,x,y)=g(x,y).
+\]
+\section{Pemetaan Persamaan (2) dan (5) ke PDE Mundur}
+
+Sekarang dicocokkan setiap suku dari Pers.~(2) dan Pers.~(5) pada file pengguna ke bentuk PDE mundur.
+
+\begin{itemize}
+\item \textbf{Persamaan (2)} merepresentasikan dinamika aset $X$.
+
+Drift dan volatilitas masuk ke dalam suku:
+
+\[
+a(x,t)V_x,
+\qquad
+\frac12 b(x,t)^2V_{xx}.
+\]
+
+Sebagai contoh, apabila model mengikuti proses Ornstein--Uhlenbeck, maka dapat diperoleh:
+
+\[
+a(x,t)=k(\theta-x)-\lambda\sigma,
+\]
+
+setelah transformasi ke ukuran risk-neutral.
+
+\item \textbf{Persamaan (5)} memberikan driver:
+
+\[
+f(t,Y,Z)=-rY-\theta Z.
+\]
+
+Karena bentuk BSDE ditulis sebagai
+
+\[
+dY=-f\,dt+Z\,dW,
+\]
+
+maka drift aktual proses $Y$ menjadi:
+
+\[
+\mu_Y=rY+\theta Z.
+\]
+
+Akibatnya pada PDE muncul suku:
+
+\[
+(ry+\theta z)V_y.
+\]
+
+\item \textbf{Diskonto} ditambahkan melalui suku:
+
+\[
+-rV.
+\]
+
+Suku ini berasal dari prinsip arbitrage-free pricing dalam formula Feynman--Kac.
+\end{itemize}
+
+Dengan demikian hubungan antara BSDE dan PDE dapat diringkas sebagai:
+
+\[
+f(t,Y,Z)
+\longrightarrow
+V_y
+\]
+
+dan
+
+\[
+(rY+\theta Z)
+\longrightarrow
+(rY+\theta Z)V_y.
+\]
+
+\section{Kasus Khusus dan Asumsi}
+
+\subsection*{1. Kasus $Y$ Deterministik}
+
+Jika
+
+\[
+dY=f(X,t)\,dt,
+\]
+
+maka tidak terdapat komponen stokastik pada $Y$, sehingga:
+
+\[
+V_{yy}=0,
+\qquad
+V_{xy}=0.
+\]
+
+Kasus ini identik dengan:
+
+\[
+Z=0.
+\]
+
+\subsection*{2. Kasus $Y$ Berdifusi}
+
+Jika
+
+\[
+dY=f\,dt+c(Y,t)\,dZ,
+\]
+
+maka PDE memperoleh tambahan:
+
+\[
+\frac12 c(y,t)^2V_{yy}.
+\]
+
+\subsection*{3. Korelasi Antar Brownian Motion}
+
+Jika
+
+\[
+dW^X\,dW^Y=\rho\,dt,
+\]
+
+maka muncul suku campuran:
+
+\[
+\rho bcV_{xy}.
+\]
+
+\subsection*{4. Perubahan Ukuran Risiko}
+
+Jika model awal dibangun pada ukuran fisik $\mathbb P$, maka drift harus ditransformasikan menjadi:
+
+\[
+\tilde a(x)
+=
+a(x)-\lambda b(x),
+\]
+
+sesuai transformasi Girsanov.
+
+\subsection*{5. Asumsi Regularitas}
+
+Diasumsikan:
+
+\begin{enumerate}
+\item
+\[
+V\in C^{2,1},
+\]
+
+\item proses bersifat Markov,
+
+\item koefisien kontinu,
+
+\item ekspektasi tetap terbatas.
+\end{enumerate}
+
+\section{Metode Numerik dan Verifikasi}
+
+\subsection*{Daftar Periksa Verifikasi}
+
+Pastikan model memenuhi:
+
+\begin{enumerate}
+\item Regularitas koefisien:
+\[
+a,b,f
+\]
+cukup mulus.
+
+\item Pertumbuhan solusi:
+\[
+|V|
+\]
+terkontrol.
+
+\item Kondisi terminal:
+\[
+V(T)=g(x,y).
+\]
+
+\item Boundary condition ditentukan dengan benar.
+\end{enumerate}
+
+\subsection*{Metode Penyelesaian}
+
+\begin{enumerate}
+
+\item \textbf{Finite Difference}
+
+Menggunakan skema eksplisit, implisit, atau ADI.
+
+\item \textbf{Method of Lines}
+
+Diskritisasi ruang sehingga PDE menjadi sistem ODE.
+
+\item \textbf{Monte Carlo (Feynman--Kac)}
+
+Simulasi:
+
+\[
+(X_t,Y_t)
+\]
+
+di bawah ukuran $\mathbb Q$ lalu hitung:
+
+\[
+e^{-rT}g(X_T,Y_T).
+\]
+
+\item \textbf{Metode Spektral / FEM}
+
+Alternatif untuk dimensi tinggi.
+
+\end{enumerate}
+
+\section{Contoh Kerja: Ornstein--Uhlenbeck dan $Y_t=f(X_t)$}
+
+Misalkan:
+
+\begin{equation}
+dX_t
+=
+k(\theta-X_t)\,dt
++
+\sigma\,dW_t.
+\end{equation}
+
+dan
+
+\begin{equation}
+dY_t=f(X_t)\,dt.
+\end{equation}
+
+Generator infinitesimal:
+
+\begin{equation}
+\mathcal LV
+=
+k(\theta-x)V_x
++
+f(x)V_y
++
+\frac12\sigma^2V_{xx}.
+\end{equation}
+
+PDE mundur menjadi:
+
+\begin{equation}
+\partial_tV
++
+k(\theta-x)V_x
++
+f(x)V_y
++
+\frac12\sigma^2V_{xx}
+-rV
+=
+0,
+\end{equation}
+
+dengan kondisi terminal:
+
+\[
+V(T,x,y)=g(x,y).
+\]
+
+Langkah derivasi:
+
+\begin{enumerate}
+
+\item Tentukan drift dan difusi:
+\[
+a(x)=k(\theta-x),
+\qquad
+b(x)=\sigma.
+\]
+
+\item Hitung generator:
+\[
+\mathcal L.
+\]
+
+\item Terapkan Feynman--Kac.
+
+\item Tambahkan kondisi terminal.
+
+\end{enumerate}
+
+\section{Tabel Kasus Asumsi dan Bentuk PDE}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.4}
+
+\begin{tabular}{p{5cm}p{8cm}}
+
+\toprule
+
+\textbf{Asumsi Model}
+&
+\textbf{Bentuk PDE}
+
+\\
+\midrule
+
+$
+dY=f(x)\,dt
+$
+
+&
+
+$
+\partial_tV+aV_x+fV_y+\frac12b^2V_{xx}-rV=0
+$
+
+\\
+
+$
+dY=fdt+c(y)dZ,\;
+\rho=0
+$
+
+&
+
+Tambah
+
+$
+\frac12c^2V_{yy}
+$
+
+\\
+
+$
+dY=fdt+c(y)dZ,\;
+\rho\neq0
+$
+
+&
+
+Tambah
+
+$
+\frac12c^2V_{yy}
++
+\rho bcV_{xy}
+$
+
+\\
+
+Risk-neutral measure
+
+&
+
+$
+a\to a-\lambda b
+$
+
+\\
+
+Terminal
+
+$
+V(T)=g
+$
+
+&
+
+Kondisi batas akhir
+
+\\
+
+\bottomrule
+
+\end{tabular}
+
+\end{table}
+
+\section{Diagram Alir Derivasi}
+
+\begin{verbatim}
+flowchart TD
+
+A[Mulai:
+Tulis SDE]
+
+-->
+
+B[Hitung Generator
+dengan Ito]
+
+-->
+
+C[Terapkan
+Feynman--Kac]
+
+-->
+
+D[Substitusi
+Pers.(2),(5)]
+
+-->
+
+E[Dapatkan PDE]
+
+-->
+
+F[Selesaikan
+PDE]
+\end{verbatim}
+
+Diagram di atas menggambarkan urutan:
+
+\[
+\text{SDE}
+\rightarrow
+\text{Generator}
+\rightarrow
+\text{Feynman--Kac}
+\rightarrow
+\text{PDE}
+\rightarrow
+\text{Solusi}.
+\]
+
+\section*{Referensi}
+
+Teorema Feynman--Kac dan kalkulus stokastik menjadi dasar teoritis derivasi ini.
+
+Referensi yang umum digunakan antara lain:
+
+\begin{enumerate}
+
+\item
+B.~{\O}ksendal,
+\textit{Stochastic Differential Equations}.
+
+\item
+Karatzas dan Shreve,
+\textit{Brownian Motion and Stochastic Calculus}.
+
+\item
+Shreve,
+\textit{Stochastic Calculus for Finance II}.
+
+\end{enumerate}
+
+\end{document}

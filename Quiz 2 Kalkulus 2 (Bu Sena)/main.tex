@@ -168,7 +168,24 @@ middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
         \begin{align*}
             K &= \frac{1}{4} \cdot 2\pi r = \frac{1}{4} \cdot 2\pi \cdot 2 = \pi
         \end{align*}
-        \item The centroid of the surface area obtained by revolving the arc about the $y$-axes can be calculated using Pappus' theorem, which states that the centroid of a surface of revolution is located at a distance from the axis of revolution equal to the distance traveled by the centroid of the generating curve. Since the centroid of the arc is located at a distance of $\frac{4}{\pi}$ from the $y$-axis, then the centroid of the surface area is located at a distance of $\pi \cdot \frac{4}{\pi} = 4$ from the $y$-axis. Thus, the centroid of the surface area is at $\left(4, 0\right)$.
+        \item The centroid of the surface area obtained by revolving the first-quadrant arc about the $y$-axis can be found using Pappus together with the surface-centroid formula. Parametrize the quarter-circle by
+        \[ x=2\cos\theta,\qquad y=2\sin\theta,\qquad 0\leq\theta\leq\tfrac{\pi}{2},\]
+        so that $ds=2\,d\theta$ and the arc length is $L=\int_0^{\pi/2}2\,d\theta=\pi$ (as in (d)).
+
+        The centroid of the generating arc (distance from the $y$-axis) is
+        \[ \bar{x}_{\text{arc}}=\frac{1}{L}\int x\,ds=\frac{1}{\pi}\int_0^{\pi/2}(2\cos\theta)(2\,d\theta)=\frac{4}{\pi}.\]
+
+        By Pappus the surface area is
+        \[ S=L\cdot(2\pi\bar{x}_{\text{arc}})=\pi\cdot2\pi\cdot\frac{4}{\pi}=8\pi.\]
+
+        To locate the centroid of the surface (distance from the $y$-axis) compute
+        \[ \bar{x}_{\text{surf}}=\frac{1}{S}\int x\,dS=\frac{1}{S}\int(2\pi x)\,x\,ds=\frac{2\pi\int x^2\,ds}{S}.\]
+        Here
+        \[ \int x^2\,ds=\int_0^{\pi/2}(2\cos\theta)^2(2\,d\theta)=8\int_0^{\pi/2}\cos^2\theta\,d\theta=8\cdot\frac{\pi}{4}=2\pi.\]
+        Hence
+        \[ \bar{x}_{\text{surf}}=\frac{2\pi\cdot2\pi}{8\pi}=\frac{\pi}{2}.\]
+
+        Therefore the centroid of the resulting surface is located on the $x$-axis at a distance $\displaystyle\bar{x}_{\text{surf}}=\frac{\pi}{2}$ from the $y$-axis, i.e. at $\left(\dfrac{\pi}{2},0\right)$.
     \end{enumerate}
     \item The arc length of the curve can be calculated using the formula
     \begin{align*}

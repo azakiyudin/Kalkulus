@@ -374,7 +374,7 @@ Jadi, titik potong antara kedua kurva tersebut terjadi pada\begin{penting}
         \begin{tikzpicture}
 \pgfplotsset{set layers}
   \begin{polaraxis}[xticklabel={$ \pgfmathprintnumber{\tick}^{\circ} $}]
-    \addplot[domain=0:360,samples=300, color=red] {6};
+    \addplot[thick, domain=0:360,samples=300, color=red] {6};
     \addplot[domain=-60:60,opacity=0, save path=\A] {6}-- (axis cs:60,0)
 -- (axis cs:-60,0)
 -- cycle;
@@ -387,7 +387,7 @@ Jadi, titik potong antara kedua kurva tersebut terjadi pada\begin{penting}
     \fill[red!15, reuse path=\A];
     \fill[blue!15, reuse path=\B];
     \endpgfonlayer
-    \addplot[domain=0:360,samples=300, color=blue] {4+4*cos(x)};
+    \addplot[thick,domain=0:360,samples=300, color=blue] {4+4*cos(x)};
   \end{polaraxis}
 
   \end{tikzpicture}
