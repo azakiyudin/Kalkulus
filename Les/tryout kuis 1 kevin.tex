@@ -1,0 +1,270 @@
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+    \usetikzlibrary{patterns,snakes,shapes.arrows}
+\usepackage{fancyhdr}
+\usepackage{enumerate,hyperref,enumitem}
+\usepackage{cancel}
+\usepackage{varwidth}
+
+% TAMBAHKAN PACKAGE SENDIRI KALAU KURANG
+
+\usepackage{geometry}
+\geometry{
+	total = {210mm, 148.5mm},
+	left = 25mm,
+	right = 25mm,
+	top = 25mm,
+	bottom = 25mm,
+}
+
+% \fancyhead{}
+% \fancyfoot{}
+% \fancyhead[r]{}
+% \fancyhead[l]{\fbox{\large{\textbf{@ahmadzakiyudin\_}}}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{soul}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{afterpage}
+\usepackage{xcolor}
+\usepackage[nosectionbib]{apacite}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{upgreek}
+\usepackage{siunitx}
+\usepackage{physics}
+\usepackage{hyperref}
+\renewcommand{\baselinestretch}{1.25}
+\usepackage{multicol}
+\usepackage{ragged2e,scalerel,amsmath,multicol,gensymb,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim,amsthm,physics}
+\usepgfplotslibrary{polar,fillbetween}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc,patterns,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+\makeatother
+\newtheorem{defn}{Definisi}[section]
+\newtheorem{teo}[defn]{Teorema}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{lemmas}[defn]{Lemma}
+
+\newtheorem{cor}[defn]{Akibat}
+\newtheorem{asumsi}[defn]{Asumsi}
+\theoremstyle{definition}
+\newtheorem{con}{Contoh}[section]
+\theoremstyle{definition}
+\theoremstyle{plain}
+\newtheorem{prop}{Proposisi}[section]
+\newcommand{\longdiv}{\smash{\mkern-0.43mu\vstretch{1.31}{\hstretch{.7}{)}}\mkern-5.2mu\vstretch{1.31}{\hstretch{.7}{)}}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+% \lhead{Halaman \thepage}
+\cfoot{\href{https://instagram.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_}}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\newenvironment{jawab}[2][tes]{
+\fbox{\begin{minipage}{14.65cm}
+\textbf{Kata kunci materi:} #1.\\
+\textbf{Pembahasan:}\\ #2
+\end{minipage}}}{}
+
+\newenvironment{jawab2}[2][tes]{
+\fbox{\begin{minipage}{14.65cm}
+ #2
+\end{minipage}}}{}
+
+\newenvironment{jawaban}[2][tes]{
+\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt}\boxed{\color{oldcolor}#2}\color{oldcolor}.
+}{}
+
+\newenvironment{jawaban2}[2][tes]{
+\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt}\fbox{\color{oldcolor}#2}\color{oldcolor}.
+}{}
+
+\newenvironment{penting}[2][tes]{
+\colorlet{oldcolor}{.}
+\color{blue}
+\fbox{\color{oldcolor}#2}\color{oldcolor}
+}{}
+\renewcommand{\proofname}{Bukti}
+\renewcommand{\thethm}{\arabic{chapter}.\arabic{thm}}
+
+\newcommand{\normlp}[1]{\left\|#1\right\|_{L^p_{\lambda}(0,T;H)}}% Fungsi norm (||x||)
+\newcommand{\R}{\mathbb{R}}
+\fancyhead[l]{\fbox{\large{\textbf{PAKET A}}}}
+\renewcommand{\natural}{\mathbb{N}}
+\newcommand{\Xpl}{X^R_{p,\lambda}}
+\newcommand{\Xpls}{X^R_{p,\lambda^*}}
+\newcommand{\qpl}{q^R_{p,\lambda}}
+\newcommand{\qpls}{q^R_{p,\lambda^*}}
+
+\begin{document}
+
+    \begin{center}
+	{\underline{\textbf{\MakeUppercase{Try Out KUIS 1 Kalkulus 1}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Sabtu, 19 September 2026\\
+		Waktu & : & (100 menit)\\
+		Sifat & : & Sesuai Peraturan Kuis\\
+        Dosen & : & Pak Nurul\\
+		% Kelas & : & 1-13, 101\\
+  ~
+	\end{tabular}
+    
+    \noindent\rule{\textwidth}{2.pt}
+        \end{center}
+\begin{enumerate}
+    \item Tentukan semua nilai $x$ yang memenuhi ketaksamaan berikut
+    \begin{enumerate}
+    \item $\dfrac{1}{x+2}\geq \dfrac{3}{x-3}$.
+    \item $2\leq |3x+7|<15$.
+    \end{enumerate}
+    \item Diberikan titik $A(1,2)$ dan $B(3,4)$. Tentukan persamaan garis yang melalui titik $A$ dan tegak lurus dengan garis yang melalui titik $B$ dan $C(5,6)$.
+    \item Gambarkan grafik dari fungsi $f(x)=\begin{cases}
+    (x+2)^2, & \text{jika } x<-1\\
+    \sqrt{x+1}+1, & \text{jika } x\geq -1.
+    \end{cases}$
+    \item Diberikan fungsi $f(x)=\sqrt{2x-3}$ dan $g(x)=2x+3$ didefinisikan pada interval $-3\leq x\leq 5$. Dapatkan $(f\circ g)(x)$ dan tentukan domainnya.
+\end{enumerate}
+\newpage 
+\fancyhead{l}{\fbox{\large{\textbf{PAKET B}}}}
+ \begin{center}
+    {\underline{\textbf{\MakeUppercase{Try Out KUIS 1 KALKULUS 1}}}}
+    \end{center}
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+		Hari, Tanggal & : & Selasa, 31 Maret 2026\\
+		Waktu & : & (100 menit)\\
+		Sifat & : & Sesuai Peraturan Kuis\\
+        Dosen & : & Pak Nurul\\
+		% Kelas & : & 1-13, 101\\
+  ~
+	\end{tabular}
+    
+    \noindent\rule{\textwidth}{2.pt}
+        \end{center}
+        \begin{enumerate}
+            \item Tentukan semua nilai $x$ yang memenuhi ketaksamaan berikut
+            \begin{enumerate}
+                \item $\dfrac{1}{x+2}\geq 3$.
+                \item $1\leq |2x-8|<10$.
+            \end{enumerate}
+            \item Diberikan persamaan lingkaran $x^2+y^2-8x-6y+9=0$. Tentukan koordinat titik pusat dan panjang jari-jari lingkaran tersebut. Gambarkan lingkaran tersebut pada bidang koordinat.
+            \item Gambarkan grafik dari fungsi $f(x)=\begin{cases}
+    -x^2+4, & \text{jika } x<0\\
+    \sqrt{x}+4, & \text{jika } x\geq 0.
+    \end{cases}$
+            \item Dapatkan nilai $k$ sehingga fungsi $f(x)=x^2+4x-1$ memiliki invers pada interval $[k,\infty)$. Tentukan juga invers dari fungsi tersebut beserta domainnya.
+        \end{enumerate}
+%         \begin{enumerate}
+%             \item Dapatkan $\dfrac{dy}{dx}$ dari $y=\dfrac{e^{-x}+\ln x}{\cosh (5x)}$.
+%             \item Dapatkan $\dfrac{dy}{dx}$ dari $y=e^{x\tan^{-1}x}$.
+%             \item Hitung 
+%             \begin{align*}
+%                 \int_0^{\frac{1}{2}\ln 3} \frac{e^x}{1+e^{2x}}\, dx.
+%             \end{align*}
+%             \item Hitung 
+%             \begin{align*}
+%                 \int \cosh (4x)\sqrt{2+7\sinh(4x)}\, dx
+%             \end{align*}
+%         \end{enumerate}
+
+% \newpage
+% \fancyhead[l]{\fbox{\large{\textbf{PAKET C}}}}
+%  \begin{center}
+% 	{\underline{\textbf{\MakeUppercase{Try Out KUIS 1 KALKULUS 2}}}}
+%     \end{center}
+
+%     \begin{center}
+% 	\begin{tabular}{lcl}
+% 		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+% 		Hari, Tanggal & : & Selasa, 31 Maret 2026\\
+% 		Waktu & : & (100 menit)\\
+% 		Sifat & : & Terserah\\
+% 		% Kelas & : & 1-13, 101\\
+%   ~
+% 	\end{tabular}
+    
+%     \noindent\rule{\textwidth}{2.pt}
+%         \end{center}
+%         \begin{enumerate}
+%              \item  Dapatkan $\dfrac{dy}{dx}$ dari $y=\dfrac{\sin(2x)\sqrt{3x+\ln x}}{(x^3+3)^5}$.
+%             \item Hitung 
+%     \begin{align*}
+%         \int \dfrac{x}{9+4x^4}\, dx.
+%     \end{align*}
+%             \item Hitung 
+%     \begin{align*}
+%         \int \frac{\sin \theta }{\sqrt{\cos^2\theta -1}}d \theta.
+%     \end{align*}
+%             \item Hitung 
+%             \begin{align*}
+%                 \int t \tan^{-1} t \, dt.
+%             \end{align*}
+%             \item Hitung
+%             \begin{align*}
+%                 \int \dfrac{t^2+5}{t^2-4t+5}\, dt
+%             \end{align*}
+%         \end{enumerate}
+
+% \newpage
+% \fancyhead[l]{\fbox{\large{\textbf{PAKET D}}}}
+%  \begin{center}
+% 	{\underline{\textbf{\MakeUppercase{Try Out KUIS 1 KALKULUS 2}}}}
+%     \end{center}
+
+%     \begin{center}
+% 	\begin{tabular}{lcl}
+% 		Mata kuliah/SKS & : & Kalkulus 2 ( SM234201 ) / 3 SKS\\
+% 		Hari, Tanggal & : & Selasa, 31 Maret 2026\\
+% 		Waktu & : & (100 menit)\\
+% 		Sifat & : & Terserah\\
+% 		% Kelas & : & 1-13, 101\\
+%   ~
+% 	\end{tabular}
+    
+%     \noindent\rule{\textwidth}{2.pt}
+%         \end{center}
+%         \begin{enumerate}
+%              \item  Dapatkan $\dfrac{dy}{dx}$ dari $y=(x^2+2)^{2x+3\cosh x}$.
+%             \item Hitung 
+%     \begin{align*}
+%         \int \dfrac{dt}{\sqrt{3e^{2t}-1}}
+%     \end{align*}
+%             \item Hitung 
+%     \begin{align*}
+%         \int \dfrac{dx}{x\sqrt{4(\ln x)^2-1}}.
+%     \end{align*}
+%             \item Hitung 
+%             \begin{align*}
+%                 \int \ln(2t^2+3) \, dt.
+%             \end{align*}
+%             \item Hitung
+%             \begin{align*}
+%                 \int \dfrac{t^2}{(t+2)^3}\, dt
+%             \end{align*}
+%         \end{enumerate}
+\end{document}
