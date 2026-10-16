@@ -1,0 +1,788 @@
+
+\documentclass[10pt,openany,a4paper]{article}
+\usepackage{tikz, pgfplots, tkz-euclide,calc}
+\usetikzlibrary{patterns,shapes.arrows,calc}
+\usepackage{fancyhdr}
+\usepackage{enumerate,enumitem}
+\usepackage{cancel}
+\usepackage{varwidth}
+
+% TAMBAHKAN PACKAGE SENDIRI KALAU KURANG
+
+\usepackage{geometry}
+\geometry{
+	left = 22mm,
+	right = 22mm,
+	top = 25mm,
+	bottom = 25mm,
+}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{soul}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{afterpage}
+\usepackage{xcolor}
+\usepackage[nosectionbib]{apacite}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{upgreek}
+\usepackage{siunitx}
+% \usepackage{fontawesome5}
+\usepackage{fontawesome6}
+\usepackage{physics}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\renewcommand{\baselinestretch}{1.3}
+\usepackage{multicol}
+\usepackage{hyperref,ragged2e,amsmath,multicol,gensymb,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim,amsthm,physics}
+\usepgfplotslibrary{polar,fillbetween}
+% Disable tikz externalization to avoid requiring -shell-escape
+\usepgfplotslibrary{external}
+\tikzexternalize[prefix=tikz/]
+\tikzset{reuse path/.code={\pgfsyssoftpath@setcurrentpath{#1}}}
+\usetikzlibrary{shapes.geometric,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+% remove stray \makeatother
+\newtheorem{defn}{Definisi}[section]
+\newtheorem{teo}[defn]{Teorema}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{lemmas}[defn]{Lemma}
+\newtheorem{cor}[defn]{Akibat}
+\newtheorem{asumsi}[defn]{Asumsi}
+\theoremstyle{definition}
+\newtheorem{con}{Contoh}[section]
+\theoremstyle{definition}
+\theoremstyle{plain}
+\newtheorem{prop}{Proposisi}[section]
+\renewcommand{\proofname}{Bukti}
+\renewcommand{\thethm}{\arabic{chapter}.\arabic{thm}}
+
+\newcommand{\normlp}[1]{\left\|#1\right\|_{L^p_{\lambda}(0,T;H)}}% Fungsi norm (||x||)
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\natural}{\mathbb{N}}
+\newcommand{\Xpl}{X^R_{p,\lambda}}
+\newcommand{\Xpls}{X^R_{p,\lambda^*}}
+\newcommand{\qpl}{q^R_{p,\lambda}}
+\newcommand{\qpls}{q^R_{p,\lambda^*}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Halaman \thepage}
+% \cfoot{\faXTwitter\ \href{https://x.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_} | \faInstagram\ \href{https://instagram.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_} | \faTiktok\ \href{https://tiktok.com/@ahmathz/}{@ahmathz}}
+% \rhead{Pembahasan Soal ETS \\ Kalkulus 1 ITS 2025/2026}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\newenvironment{jawab}[2][tes]{
+% \fbox{\begin{minipage}{14.65cm}
+\textbf{Kata kunci materi:} #1.\\
+\textbf{Penyelesaian:} #2
+% \end{minipage}}
+}{}
+
+\newenvironment{jawab2}[2][tes]{
+\fbox{\begin{minipage}{14.65cm}
+ #2
+\end{minipage}}}{}
+
+\newenvironment{jawaban}[2][tes]{
+\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt}\boxed{\color{oldcolor}#2}\color{oldcolor}.
+}{}
+
+\newenvironment{jawaban2}[2][tes]{
+\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt}\fbox{\color{oldcolor}#2}\color{oldcolor}.
+}{}
+
+\newenvironment{penting}[2][tes]{
+\colorlet{oldcolor}{.}
+\color{blue}
+\fbox{\color{oldcolor}#2}\color{oldcolor}
+}{}
+
+\begin{document}
+% \begin{titlepage}
+%     \vspace*{\fill}
+%     \begin{center}
+%       \Huge {PEMBAHASAN SOAL EAS \\ KALKULUS II \\ TAHUN 2024/2025}\\[0.4 cm]
+%       \huge {Ahmad Hisbu Zakiyudin}\\[0.2 cm]
+%       \Large {(\href{https://instagram.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_})}
+%     \end{center}
+%     \vspace*{\fill}
+%   \end{titlepage}
+% !TEX root = ../../BookTemplate.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{titlepage}
+%     \raggedleft	
+% 	\hspace{.025\textwidth}
+% 	\parbox[b]{\textwidth}{
+%     \vspace{1.5cm}
+% 		{\Huge\bfseries Pembahasan Soal EAS}                \\[20pt]
+% 		{\huge\textit\ Kalkulus II}\\ \\[10pt]
+%         {\Large\textsc{Tahun 2024/2025}}}
+% \vfill
+% \rule{1pt}{.14\textheight}
+% \hspace{.025\textwidth}
+%     \raisebox{10pt}{\parbox[b]{.95\textwidth}{ 
+%         {\Large\textsc{Ahmad Hisbu Zakiyudin}}              \\[10pt]
+%         \large{\href{https://instagram.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_}}               \\[25pt]
+%         {\large 5 Juni 2026}}}
+% \end{titlepage}
+\begin{titlepage}
+	\centering % Center everything on the title page
+	% \scshape % Use small caps for all text on the title page
+	\vspace*{1.5\baselineskip} % White space at the top of the page
+% ===================
+%	Title Section 	
+% ===================
+
+	\rule{13cm}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal rule
+	\rule{13cm}{0.4pt} % Thin horizontal rule
+	
+		\vspace{0.75\baselineskip} % Whitespace above the title
+% ========== Title ===============	
+	{	\Huge Soal Tryout ETS\\ 
+			\vspace{4mm}
+		Kalkulus 1 \\ \vspace{2mm} \huge{Tahun 2026/2027}\\ \vspace{2mm} \Large{(Paket 2)}\\	}
+% ======================================
+		\vspace{0.75\baselineskip} % Whitespace below the title
+	\rule{13cm}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal rule
+	\rule{13cm}{1.6pt} % Thick horizontal rule
+	
+		\vspace{1.75\baselineskip} % Whitespace after the title block
+% =================
+%	Information	
+% =================
+{\large Oleh: Ahmad Hisbu Zakiyudin}
+	% {\large Oleh: Ahmad Hisbu Zakiyudin \\
+	% 	\vspace*{1.2\baselineskip}
+	% \href{https://instagram.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_}} \\
+	\vfill
+	\vspace{1mm}
+\huge{Selamat Belajar!}
+\end{titlepage}
+\makeatletter
+\setlength\fboxsep{3pt}
+% ensure enough header height for fancyhdr
+\setlength{\headheight}{24pt}
+% Kop tiap kelompok: #1 kelompok, #2 kelas, #3 departemen, #4 jadwal kuliah, #5 sesi
+\newcommand{\kopsoal}[5]{%
+ \begin{center}
+	{\underline{\textbf{\MakeUppercase{Tryout ETS Kalkulus 1 Tahun 2026/2027}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
+		Kelompok & : & #1\\
+		Kelas & : & #2\\
+		Departemen & : & #3\\
+		Jadwal kuliah & : & #4\\
+		Sesi & : & #5\\
+		Waktu & : & 100 menit\\
+		Sifat & : & Tertutup\\
+  ~
+	\end{tabular}
+
+    \noindent\rule{\textwidth}{2.pt}
+        \end{center}}
+
+% Kop kelompok IUP (bahasa Inggris): #1 kelompok, #2 kelas, #3 departemen, #4 jadwal kuliah, #5 sesi
+\newcommand{\kopsoaliup}[5]{%
+ \begin{center}
+	{\underline{\textbf{\MakeUppercase{Tryout ETS Kalkulus 1 Tahun 2026/2027}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Course / Credit & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
+		Group & : & #1\\
+		Class & : & #2\\
+		Department & : & #3\\
+		Lecture schedule & : & #4\\
+		Session & : & #5\\
+		Time & : & 100 minutes\\
+		Type & : & Closed\\
+  ~
+	\end{tabular}
+
+    \noindent\rule{\textwidth}{2.pt}
+        \end{center}}
+
+% Kop tryout Matematika 2 SKS: #1 kelompok, #2 kelas, #3 departemen, #4 jadwal kuliah, #5 sesi
+\newcommand{\kopsoalmat}[5]{%
+ \begin{center}
+	{\underline{\textbf{\MakeUppercase{Tryout ETS Matematika Tahun 2026/2027}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Mata kuliah/SKS & : & Matematika ( SM234152 ) / 2 SKS\\
+		Kelompok & : & #1\\
+		Kelas & : & #2\\
+		Departemen & : & #3\\
+		Jadwal kuliah & : & #4\\
+		Sesi & : & #5\\
+		Waktu & : & 100 menit\\
+		Sifat & : & Tertutup\\
+  ~
+	\end{tabular}
+
+    \noindent\rule{\textwidth}{2.pt}
+        \end{center}}
+
+% Kop tryout Matematika 2 SKS IUP (bahasa Inggris)
+\newcommand{\kopsoalmatiup}[5]{%
+ \begin{center}
+	{\underline{\textbf{\MakeUppercase{Tryout ETS Matematika Tahun 2026/2027}}}}
+    \end{center}
+
+    \begin{center}
+	\begin{tabular}{lcl}
+		Course / Credit & : & Matematika ( SM234152 ) / 2 SKS\\
+		Group & : & #1\\
+		Class & : & #2\\
+		Department & : & #3\\
+		Lecture schedule & : & #4\\
+		Session & : & #5\\
+		Time & : & 100 minutes\\
+		Type & : & Closed\\
+  ~
+	\end{tabular}
+
+    \noindent\rule{\textwidth}{2.pt}
+        \end{center}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-5 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.3, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoal{Kal-5}{22-27}{T. Fisika, T. Material dan Metalurgi, Rkp}{Senin, Rabu; 07.00-09.30}{1}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Dapatkan himpunan penyelesaian pertidaksamaan
+    \begin{align*}
+        \frac{2x-1}{x+3}\leq 1.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Gambarkan kurva dasar $y=\sqrt{x}$. Berdasarkan kurva dasar tersebut, gunakan translasi (pergeseran) untuk menggambar kurva $y=\sqrt{x-2}+1$ (Jelaskan ilustrasinya).
+
+    \item \textbf{[Subbab 2.4]} Diberikan fungsi $f(x)=\dfrac{3x-2}{x+1}$.
+    \begin{enumerate}
+        \item Tentukan domain dan range dari $f$.
+        \item Dapatkan $f^{-1}(x)$ beserta domainnya.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.3]} Hitunglah $\displaystyle\lim_{x\to-\infty}\frac{2x+1}{\sqrt{x^2+3}}$.
+
+    \item \textbf{[Subbab 4.2]} Dengan menggunakan definisi turunan, dapatkan $f'(x)$ dari $f(x)=x^2+3x$. Kemudian dapatkan persamaan garis singgung kurva $y=f(x)$ di $x=1$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-6 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.3, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoal{Kal-6}{28-31}{T. Perkapalan, T. Transportasi Laut, T. Bangunan Lepas Pantai}{Senin, Rabu; 07.00-09.30}{1}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Selesaikan pertidaksamaan berikut
+    \begin{align*}
+        \frac{x^2-3x-4}{x^2-9}\leq 0.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Gambarkan sketsa grafik $f(x)=|x-3|$ dan $g(x)=|x+1|$ pada satu bidang koordinat. Tentukan titik potong kedua grafik tersebut.
+
+    \item \textbf{[Subbab 2.4]} Diberikan fungsi $f(x)=2+\sqrt{5-x}$ dengan $x\leq 5$.
+    \begin{enumerate}
+        \item Tentukan range dari $f$.
+        \item Dapatkan $f^{-1}(x)$ beserta domainnya.
+        \item Sketsa grafik $f(x)$ dan $f^{-1}(x)$ pada satu bidang koordinat.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.3]} Hitunglah $\displaystyle\lim_{x\to+\infty}\frac{3x^2-x+2}{1-2x^2}$.
+
+    \item \textbf{[Subbab 4.2]} Tunjukkan bahwa $f(x)=\begin{cases}
+        x^2+3, & x\leq 1\\
+        2x+2, & x>1
+    \end{cases}$ kontinu dan dapat diturunkan di $x=1$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-iup-1 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.1, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoaliup{Kal-iup-1}{61, 68}{Chemical, Environmental, Electrical Engineering}{Monday, Wednesday; 07.00-09.30}{1}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Solve the following inequality.
+    \begin{align*}
+        \frac{x+5}{x-1}\geq 2.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Sketch the base curve $y=\dfrac{1}{x}$. Based on that base curve, use translation to sketch the curve $y=\dfrac{1}{x-2}+1$. (Explain the process).
+
+    \item \textbf{[Subbab 2.4]} Given a function $f(x)=x^2-6x+5$ with $x\geq 3$. Determine:
+    \begin{enumerate}
+        \item[a)] The range of $f$;
+        \item[b)] $f^{-1}(x)$ and its domain.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.1]} Given $f(x)=\begin{cases}
+        x+1, & x<1\\
+        5-x^2, & x\geq 1
+    \end{cases}$.
+    \begin{enumerate}
+        \item[a.] Sketch the graph of $f$.
+        \item[b.] Find $\displaystyle\lim_{x\to 1^-}f(x)$ and $\displaystyle\lim_{x\to 1^+}f(x)$. Does $\displaystyle\lim_{x\to 1}f(x)$ exist? Explain.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.2]} Using the definition of derivative, find $f'(x)$ of $f(x)=\sqrt{x+3}$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-iup-4 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.1, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoaliup{Kal-iup-4}{65, 66, 67}{Statistics, Marine Engineering (JD), Informatics}{Monday, Wednesday; 07.00-09.30}{1}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Solve the following inequality.
+    \begin{align*}
+        3\leq x^2+2x<8.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Sketch the base curve $y=|x|$. Based on that base curve, use translation to sketch the curve $y=|x+2|-3$. (Explain the process).
+
+    \item \textbf{[Subbab 2.4]} Given a function $f(x)=\dfrac{x-1}{2x+3}$. Determine:
+    \begin{enumerate}
+        \item[a)] The domain and range of $f$;
+        \item[b)] $f^{-1}(x)$ and its domain.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.1]} Given $f(x)=\begin{cases}
+        2-x, & x<0\\
+        x^2, & x\geq 0
+    \end{cases}$.
+    \begin{enumerate}
+        \item[a.] Sketch the graph of $f$.
+        \item[b.] Find $\displaystyle\lim_{x\to 0^-}f(x)$, $\displaystyle\lim_{x\to 0^+}f(x)$, and $\displaystyle\lim_{x\to 1}f(x)$ (if they exist).
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.2]} Using the definition of derivative, find $f'(x)$ of $f(x)=\dfrac{3}{x}$. Then, find the equation of the tangent line to the curve $y=f(x)$ at $x=1$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-9 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.1, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoal{Kal-9}{44-48}{T. Sistem Perkapalan, T. Kelautan, T. Komputer}{Senin, Rabu; 12.30-15.00}{3}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Dapatkan himpunan penyelesaian dari
+    \begin{align*}
+        \frac{x+1}{x-2}\geq\frac{x-3}{x+1}.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Diberikan suatu fungsi $f(x)=1+\sqrt{x+2}$ dan garis $\ell$ yang melalui titik $(-2,1)$ dan $(7,4)$.
+    \begin{enumerate}
+        \item Buatlah sketsa kurva $f(x)$ dan garis $\ell$ pada satu bidang koordinat.
+        \item Tentukan titik potong antara kurva $f(x)$ dan garis $\ell$.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 2.4]} Diberikan $f(x)=2-\sqrt[3]{x+1}$.
+    \begin{enumerate}
+        \item Dapatkan $f^{-1}(x)$ beserta domainnya.
+        \item Sketsa $f(x)$ dan $f^{-1}(x)$ pada satu bidang koordinat.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.1]} Diberikan $g(x)=\dfrac{x^2+x}{|x|}$. Dapatkan $\displaystyle\lim_{x\to 0^-}g(x)$ dan $\displaystyle\lim_{x\to 0^+}g(x)$. Apakah $\displaystyle\lim_{x\to 0}g(x)$ ada? Jelaskan.
+
+    \item \textbf{[Subbab 4.2]} Dengan menggunakan definisi turunan, dapatkan $f'(x)$ dari $f(x)=\dfrac{1}{x-2}$. Kemudian tentukan kemiringan garis singgung kurva $y=f(x)$ di $x=3$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-11 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.3, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoal{Kal-11}{51-54}{Biologi, Bioteknologi, Teknologi Informasi}{Senin, Rabu; 12.30-15.00}{3}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Tentukan semua nilai $x$ yang memenuhi pertidaksamaan
+    \begin{align*}
+        \frac{x^3-4x}{x^2-1}\geq 0.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Gambarkan sketsa grafik fungsi berikut, kemudian tentukan range-nya.
+    \begin{align*}
+        f(x)=\begin{cases}
+            4-x^2, & x\leq 1\\
+            2x+1, & x>1
+        \end{cases}
+    \end{align*}
+
+    \item \textbf{[Subbab 2.4]} Diberikan fungsi $f(x)=x^2+4x$ dengan $x\leq -2$.
+    \begin{enumerate}
+        \item Dapatkan range dari $f(x)$.
+        \item Dapatkan $f^{-1}(x)$ beserta domainnya.
+        \item Sketsa grafik $f(x)$ dan $f^{-1}(x)$ pada satu bidang koordinat.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.3]} Hitunglah $\displaystyle\lim_{x\to-\infty}\left(\sqrt{x^2+2x}+x\right)$.
+
+    \item \textbf{[Subbab 4.2]} Diberikan $f(x)=\begin{cases}
+        x^2, & x\leq 2\\
+        4x-4, & x>2
+    \end{cases}$.\\
+    Selidiki apakah $f$ dapat diturunkan di $x=2$. Jika dapat, tentukan $f'(2)$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-12 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.1, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoal{Kal-12}{55-60}{Aktuaria, Teknik Informatika, RPL, RKA}{Senin, Rabu; 12.30-15.00}{3}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Tentukan penyelesaian dari pertidaksamaan
+    \begin{align*}
+        \frac{x^2-x-6}{x^2+x+1}<0.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Gambarkan kurva dasar $y=x^3$. Berdasarkan kurva dasar tersebut, gunakan translasi (pergeseran) untuk menggambar kurva $y=(x+1)^3-2$ (Jelaskan ilustrasinya).
+
+    \item \textbf{[Subbab 2.4]} Diberikan suatu fungsi $f(x)=1-\sqrt{9-x^2}$ dengan domain $[0,3]$.
+    \begin{enumerate}
+        \item Tentukan range dari $f$.
+        \item Dapatkan $f^{-1}(x)$ beserta domainnya.
+        \item Sketsa grafik $f(x)$ dan $f^{-1}(x)$ pada satu bidang koordinat.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.1]} Diberikan $f(x)=\begin{cases}
+        ax+3, & x<-1\\
+        x^2+a, & x\geq -1
+    \end{cases}$.\\
+    Tentukan nilai $a$ agar $\displaystyle\lim_{x\to -1}f(x)$ ada.
+
+    \item \textbf{[Subbab 4.2]} Dengan menggunakan definisi turunan, dapatkan $f'(x)$ dari $f(x)=x^3$. Kemudian dapatkan persamaan garis singgung kurva $y=f(x)$ di $x=1$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-7 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.1, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoal{Kal-7}{32-37}{T. Sipil, T. Geomatika, T. Geofisika, T. Pertambangan}{Senin, Rabu; 15.30-17.10}{4}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Dapatkan penyelesaian dari pertidaksamaan
+    \begin{align*}
+        \frac{2x+3}{x-1}\geq 3.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Gambarkan sketsa grafik fungsi
+    \begin{align*}
+        g(x)=\begin{cases}
+            2-x, & x<1\\
+            1+\sqrt{x-1}, & x\geq 1
+        \end{cases}.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.4]} Diberikan fungsi $f(x)=\dfrac{4}{x-2}+1$.
+    \begin{enumerate}
+        \item Tentukan domain dan range dari $f$.
+        \item Dapatkan $f^{-1}(x)$ beserta domainnya.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.1]} Diberikan $h(x)=\begin{cases}
+        x+2, & x\leq 1\\
+        x^2+1, & x>1
+    \end{cases}$.
+    \begin{enumerate}
+        \item Sketsa grafik $h$.
+        \item Dapatkan $\displaystyle\lim_{x\to 1^-}h(x)$ dan $\displaystyle\lim_{x\to 1^+}h(x)$. Apakah $\displaystyle\lim_{x\to 1}h(x)$ ada?
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.2]} Dengan menggunakan definisi turunan, dapatkan $f'(x)$ dari $f(x)=2x^2-x+1$. Kemudian dapatkan persamaan garis singgung kurva $y=f(x)$ di $x=1$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-8 | Paket 2: subbab per nomor 1.1, 1.5, 2.4, 3.1, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoal{Kal-8}{38-43}{Matematika, Statistika, Sains Data}{Senin, Rabu; 15.30-17.10}{4}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Dapatkan himpunan penyelesaian pertidaksamaan
+    \begin{align*}
+        \frac{x+2}{x-3}\leq\frac{x}{x+1}.
+    \end{align*}
+
+    \item \textbf{[Subbab 1.5]} Diberikan persamaan setengah lingkaran
+    \begin{align*}
+        x=2-\sqrt{8+2y-y^2}.
+    \end{align*}
+    \begin{enumerate}
+        \item Dapatkan pusat dan jari-jari lingkaran.
+        \item Sketsa grafiknya.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 2.4]} Diberikan $f(x)=3+2\sqrt[3]{x-1}$.
+    \begin{enumerate}
+        \item Dapatkan $f^{-1}(x)$.
+        \item Sketsa grafik $f(x)$ dan $f^{-1}(x)$ pada satu bidang koordinat.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.1]} Diberikan $f(x)=\begin{cases}
+        k^2x-1, & x<2\\
+        k(x+1)+1, & x\geq 2
+    \end{cases}$.\\
+    Tentukan semua nilai $k$ yang memenuhi agar $\displaystyle\lim_{x\to 2}f(x)$ ada.
+
+    \item \textbf{[Subbab 4.2]} Tunjukkan bahwa $f(x)=\begin{cases}
+        x^2-1, & x<1\\
+        1-x, & x\geq 1
+    \end{cases}$ kontinu tetapi tidak dapat diturunkan di $x=1$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-iup-2 | Paket 2: subbab per nomor 1.1, 2.3, 2.4, 3.1, 4.2
+% Kisi-kisi hari Senin: subbab 1.1, 1.5, 2.3, 2.4, 3.1, 3.3, 4.2, 4.4
+\kopsoaliup{Kal-iup-2}{62, 69}{Mechanical, Industrial, Materials \& Metallurgical Engineering}{Monday, Wednesday; 15.30-17.10}{4}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.1]} Find the solution of the following inequality
+    \begin{align*}
+        \frac{x^2-4}{x^2+3x}\geq 0.
+    \end{align*}
+
+    \item \textbf{[Subbab 2.3]} Sketch the base curve $y=\sqrt{x}$. Based on that base curve, use translation to sketch the curve $y=\sqrt{x+4}-1$. (Explain the process).
+
+    \item \textbf{[Subbab 2.4]} Given a function $f(x)=\sqrt{2x+6}-1$. Determine:
+    \begin{enumerate}
+        \item[a)] The domain and range of $f$;
+        \item[b)] $f^{-1}(x)$ and its domain.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.1]} Given $f(x)=\begin{cases}
+        3-x, & x<2\\
+        x^2-2, & x\geq 2
+    \end{cases}$.
+    \begin{enumerate}
+        \item[a.] Sketch the graph of $f$.
+        \item[b.] Find $\displaystyle\lim_{x\to 2^-}f(x)$ and $\displaystyle\lim_{x\to 2^+}f(x)$. Does $\displaystyle\lim_{x\to 2}f(x)$ exist?
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.2]} Show that $f(x)=\begin{cases}
+        x^2+2, & x\leq 1\\
+        3x, & x>1
+    \end{cases}$ is continuous but not differentiable at $x=1$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-3 | Paket 2: subbab per nomor 1.2, 1.4, 2.1, 3.4, 4.2
+% Kisi-kisi hari Selasa: subbab 1.2, 1.4, 2.1, 2.2, 3.2, 3.4, 4.2, 4.3
+\kopsoal{Kal-3}{13-16}{Kimia, Saik, Telkom}{Selasa, Kamis; 07.00-09.30}{6}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.2]} Tentukan himpunan penyelesaian dari persamaan
+    \begin{align*}
+        |x-2|+|x+1|=5.
+    \end{align*}
+
+    \item \textbf{[Subbab 1.4]} Garis $\ell$ melalui titik $(2,3)$ dan mempunyai gradien $-\frac{1}{2}$.
+    \begin{enumerate}
+        \item Dapatkan persamaan garis $\ell$.
+        \item Jika garis $\ell$ memotong sumbu-$x$ di titik $A$ dan sumbu-$y$ di titik $B$, tentukan luas segitiga $OAB$ dengan $O$ titik asal.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 2.1]} Diberikan suatu fungsi $f(x)=\left|x^2-4x+3\right|$.
+    \begin{enumerate}
+        \item Nyatakan $f(x)$ dalam bentuk fungsi sepotong-sepotong tanpa menggunakan tanda mutlak.
+        \item Tentukan domain dan range dari $f(x)$.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.4]} Dapatkan nilai $x$ di mana $f(x)=\dfrac{x^2-x-6}{x-3}$ diskontinu dan jelaskan apakah diskontinuitas tersebut dapat dihilangkan. Jika dapat, definisikan nilai fungsi di titik tersebut agar $f$ kontinu.
+
+    \item \textbf{[Subbab 4.2]} Dengan menggunakan definisi turunan, dapatkan $f'(x)$ dari $f(x)=x^2-x$. Kemudian dapatkan persamaan garis singgung kurva $y=f(x)$ di $x=2$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-4 | Paket 2: subbab per nomor 1.2, 1.4, 2.2, 3.2, 4.2
+% Kisi-kisi hari Selasa: subbab 1.2, 1.4, 2.1, 2.2, 3.2, 3.4, 4.2, 4.3
+\kopsoal{Kal-4}{17-21}{T. Mesin, Teknik Sistem dan Industri}{Selasa, Kamis; 07.00-09.30}{6}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.2]} Tentukan semua nilai $x$ yang memenuhi
+    \begin{align*}
+        1\leq|2x-3|<5.
+    \end{align*}
+
+    \item \textbf{[Subbab 1.4]} Diketahui garis $\ell_1$ melalui titik $(2,1)$ dan $(-2,-1)$. Jika $\ell_2$ adalah garis yang melalui titik $(1,-2)$ dan sejajar dengan garis $\ell_1$, dapatkan persamaan garis $\ell_2$ dan jarak titik $(2,1)$ ke garis $\ell_2$.
+
+    \item \textbf{[Subbab 2.2]} Diberikan $f(x)=\sqrt{x+5}$ dan $g(x)=x^2-9$.
+    \begin{enumerate}
+        \item Dapatkan domain $f$ dan $g$.
+        \item Dapatkan $(f\circ g)(x)$ beserta domainnya.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.2]} Hitunglah limit berikut.
+    \begin{enumerate}
+        \item $\displaystyle\lim_{x\to 0}\frac{\sqrt{x+9}-3}{2x}$
+        \item $\displaystyle\lim_{x\to 2}\frac{x^3-8}{x^2-4}$
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.2]} Dengan menggunakan definisi turunan, dapatkan $f'(x)$ dari $f(x)=\dfrac{1}{2x+1}$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-1 | Paket 2: subbab per nomor 1.2, 1.4, 2.2, 3.2, 4.2
+% Kisi-kisi hari Selasa: subbab 1.2, 1.4, 2.1, 2.2, 3.2, 3.4, 4.2, 4.3
+\kopsoal{Kal-1}{1-6}{Fisika, T. Kimia, T. Pangan}{Selasa, Kamis; 12.30-15.00}{8}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.2]} Tentukan semua nilai $x$ yang memenuhi pertidaksamaan
+    \begin{align*}
+        |3x-1|\leq|x+3|.
+    \end{align*}
+
+    \item \textbf{[Subbab 1.4]} Diketahui titik $A(k,4)$, $B(1,1)$, dan $C(3,-2)$ terletak pada satu garis lurus.
+    \begin{enumerate}
+        \item Tentukan nilai $k$.
+        \item Dapatkan persamaan garis tersebut.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 2.2]} Diberikan fungsi $f(x)=\dfrac{1}{x+2}$ dan $g(x)=\sqrt{x-1}$.
+    \begin{enumerate}
+        \item Dapatkan domain $f$ dan $g$.
+        \item Dapatkan $(g\circ f)(x)$ beserta domainnya.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.2]} Hitunglah limit berikut.
+    \begin{enumerate}
+        \item $\displaystyle\lim_{t\to 2}\frac{t^2+t-6}{t^2-4}$
+        \item $\displaystyle\lim_{x\to 5}\frac{\sqrt{2x-1}-3}{x-5}$
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.2]} Tunjukkan bahwa $f(x)=\begin{cases}
+        3x-1, & x\leq 2\\
+        x^2+1, & x>2
+    \end{cases}$ adalah fungsi kontinu tetapi tidak dapat diturunkan di $x=2$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-2 | Paket 2: subbab per nomor 1.2, 1.4, 2.2, 3.2, 4.2
+% Kisi-kisi hari Selasa: subbab 1.2, 1.4, 2.1, 2.2, 3.2, 3.4, 4.2, 4.3
+\kopsoal{Kal-2}{7-12}{T. Lingkungan, T. Elektro, T. Biomedik}{Selasa, Kamis; 12.30-15.00}{8}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.2]} Tentukan himpunan penyelesaian dari
+    \begin{align*}
+        \left|x^2-5\right|\leq 4.
+    \end{align*}
+
+    \item \textbf{[Subbab 1.4]} Diberikan garis $\ell_1: 3x-4y=12$ dan titik $P(1,4)$.
+    \begin{enumerate}
+        \item Dapatkan persamaan garis $\ell_2$ yang melalui $P$ dan tegak lurus dengan $\ell_1$.
+        \item Tentukan titik potong garis $\ell_1$ dan $\ell_2$.
+        \item Tentukan jarak titik $P$ ke garis $\ell_1$.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 2.2]} Diberikan $f(x)=\sqrt{x+5}$ dan $(f\circ g)(x)=|x-1|$.
+    \begin{enumerate}
+        \item Dapatkan $g(x)$.
+        \item Hitunglah $g(-1)$, kemudian periksa bahwa $(f\circ g)(-1)=|-1-1|$.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.2]} Diketahui $\displaystyle\lim_{x\to 3}f(x)=4$ dan $\displaystyle\lim_{x\to 3}g(x)=-2$. Dapatkan
+    \begin{enumerate}
+        \item $\displaystyle\lim_{x\to 3}\big(3f(x)+g^2(x)\big)$
+        \item $\displaystyle\lim_{x\to 3}\frac{\sqrt{f(x)+5}}{x\,g(x)}$
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.2]} Luas lingkaran berjari-jari $r$ adalah $L=\pi r^2$. Gunakan definisi turunan untuk mendapatkan $\dfrac{dL}{dr}$, kemudian hitung nilainya saat $r=3$ dan jelaskan artinya.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-10 | Paket 2: subbab per nomor 1.2, 1.4, 2.1, 3.2, 4.3
+% Kisi-kisi hari Selasa: subbab 1.2, 1.4, 2.1, 2.2, 3.2, 3.4, 4.2, 4.3
+\kopsoal{Kal-10}{49-50}{Teknologi Kedokteran}{Selasa, Kamis; 12.30-15.00}{8}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.2]} Tentukan himpunan penyelesaian dari
+    \begin{align*}
+        |x-1|<2|x+1|.
+    \end{align*}
+
+    \item \textbf{[Subbab 1.4]} Diberikan segitiga $ABC$ dengan $A(0,0)$, $B(6,2)$, dan $C(2,6)$.
+    \begin{enumerate}
+        \item Dapatkan persamaan garis tinggi dari titik $C$ (yaitu garis yang melalui $C$ dan tegak lurus $AB$).
+        \item Tentukan jarak titik $C$ ke garis $AB$, kemudian hitung luas segitiga $ABC$.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 2.1]} Diberikan $f(x)=\dfrac{\sqrt{x^2-2x-3}}{x-4}$.
+    \begin{enumerate}
+        \item Tentukan domain dari $f$.
+        \item Hitunglah $f(5)$ dan $f(-2)$.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.2]} Misalkan $f(x)=\begin{cases}
+        \dfrac{x^2-4}{x-2}, & x<2\\
+        x^2-2x+5, & x\geq 2
+    \end{cases}$.
+    \begin{enumerate}
+        \item Dapatkan $\displaystyle\lim_{x\to 2^-}f(x)$ dan $\displaystyle\lim_{x\to 2^+}f(x)$.
+        \item Apakah $\displaystyle\lim_{x\to 2}f(x)$ ada? Jelaskan.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.3]} Tuliskan rumus turunan dari $\dfrac{f}{g}$, yaitu $\dfrac{d}{dx}\left(\dfrac{f(x)}{g(x)}\right)$.\\
+    Selanjutnya, dapatkan turunan dari $\dfrac{f}{g}$ jika diketahui $f(x)=x+2$ dan $g(x)=x^2+1$.
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kal-iup-3 | Paket 2: subbab per nomor 1.2, 1.4, 2.2, 3.2, 4.2
+% Kisi-kisi hari Selasa: subbab 1.2, 1.4, 2.1, 2.2, 3.2, 3.4, 4.2, 4.3
+\kopsoaliup{Kal-iup-3}{63, 64, 70}{Civil, Geomatics, Geophysical Engineering, Naval Architecture (JD)}{Tuesday, Thursday; 15.30-17.10}{9}
+\begin{enumerate}
+    \item \textbf{[Subbab 1.2]} Find the solution set of the following inequality
+    \begin{align*}
+        |2x-5|\geq x+1.
+    \end{align*}
+
+    \item \textbf{[Subbab 1.4]} Find the equation of the line passing through the intersection point of the lines $x+y=5$ and $2x-y=1$, and perpendicular to the line $x+3y=6$.
+
+    \item \textbf{[Subbab 2.2]} Given $f(x)=\dfrac{x}{x-1}$ and $g(x)=\dfrac{1}{x}$. Determine:
+    \begin{enumerate}
+        \item[a)] The domain of function $f$ and $g$;
+        \item[b)] Function $(f\circ g)(x)$ and its domain.
+    \end{enumerate}
+
+    \item \textbf{[Subbab 3.2]} Calculate the following limits.
+    \begin{enumerate}
+        \item[a.] $\displaystyle\lim_{x\to 2}\frac{x^2-4}{x^2-3x+2}$
+        \item[b.] $\displaystyle\lim_{x\to 9}\frac{x-9}{\sqrt{x}-3}$
+    \end{enumerate}
+
+    \item \textbf{[Subbab 4.2]} Using the definition of derivative, find $f'(x)$ of $f(x)=\dfrac{1}{x+2}$. Then, find the equation of the tangent line to the curve $y=f(x)$ at $x=0$.
+\end{enumerate}
+
+\newpage
+
+\end{document}
