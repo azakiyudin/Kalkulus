@@ -184,7 +184,7 @@ middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Mata kuliah/SKS & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
 		Hari, Tanggal & : & Senin, 13 Oktober 2025\\
 		Waktu & : & 07.00 - 08.40 / 100 menit\\
 		Sifat & : & Tertutup\\
@@ -481,7 +481,7 @@ ylabel=$y$
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Course / Credit & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
+		Course / Credit & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
 		Day, Date & : & Monday, 13 October 2025\\
 		Time / Exam Time & : & 09.00 - 10.40 / 100 menit\\
 		Type & : & Tertutup\\
@@ -651,7 +651,7 @@ ylabel=$y$
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Mata kuliah/SKS & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
 		Hari, Tanggal & : & Senin, 13 Oktober 2025\\
 		Waktu & : & 11.00 - 12.40 / 100 menit\\
 		Sifat & : & Tertutup\\
@@ -795,12 +795,22 @@ ylabel=$y$
     \begin{jawab}[turunan fungsi, aturan rantai]{~\\
         Ingat kembali aturan rantai untuk turunan fungsi, yaitu
         \[
-        \frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)
+        \colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)}\color{oldcolor}.
         \]
-        Dapat dimisalkan $u=g(x) = \frac{3}{x}+x^2$ sehingga $f(u) = u^{3/2}$, dan diperoleh
+        Dapat dimisalkan $\colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}u=g(x) = \frac{3}{x}+x^2}\color{oldcolor}$ sehingga $\colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}f(u) = u^{3/2}}\color{oldcolor}$, dan diperoleh
         \begin{align*}
-            f'(u) &= \frac{3}{2}u^{1/2}\\
-            g'(x) &= -\frac{3}{x^2}+2x.
+            \colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}f'(u) = \frac{3}{2}u^{1/2}}\color{oldcolor} \quad \text{dan}\quad 
+        \colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}g'(x) = -\frac{3}{x^2}+2x}\color{oldcolor}.
         \end{align*}
         Dengan demikian, diperoleh
         \begin{align*}
@@ -808,7 +818,9 @@ ylabel=$y$
             f'(u) \cdot g'(x)\\
             &= \frac{3}{2}u^{1/2} \cdot \left(-\frac{3}{x^2}+2x\right)\\
             &= \frac{3}{2}\left(\frac{3}{x}+x^2\right)^{1/2} \left(-\frac{3}{x^2}+2x\right)\\
-            &= \frac{3}{2}\left(\frac{3}{x}+x^2\right)^{1/2} \left(2x-\frac{3}{x^2}\right)
+            &= \colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}\frac{3}{2}\left(\frac{3}{x}+x^2\right)^{1/2} \left(2x-\frac{3}{x^2}\right)}\color{oldcolor}.
         \end{align*}
         Selanjutnya, substitusi $x=2$ ke dalam $f'(x)$, diperoleh
         \begin{align*}
@@ -825,7 +837,39 @@ ylabel=$y$
         \frac{1}{3}k-\frac{1}{5}, &x=0,
     \end{cases}, \text{dengan } x\in [-9,\infty)$.\\
     Tentukan nilai $k$ sehingga $\displaystyle\lim_{x\to 0}f(x)=f(0)$.\\
-    Kemudian nyatakan fungsi $f(x)$ tanpa menggunakan bentuk fungsi sepotong-sepotong dalam domainnya untuk nilai $k$ yang diperoleh.
+    Kemudian nyatakan fungsi $f(x)$ tanpa menggunakan bentuk fungsi sepotong-sepotong dalam domainnya untuk nilai $k$ yang diperoleh.\\
+    \begin{jawab}[limit fungsi, fungsi kontinu, fungsi sepotong-sepotong]{~~\\
+            Diperhatikan bahwa untuk \(x = 0\), $\colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}f(0) = \frac{1}{3}k-\frac{1}{5}}\color{oldcolor}$. Karena limit di $x=0$ artinya nilai fungsi di sekitar $x=0$ tetapi $x\neq 0$, didapatkan limitnya adalah
+            \begin{align*}
+            \lim_{x \to 0} f(x) = \lim_{x \to 0} \frac{\sqrt{x+9}-3}{x}.
+            \end{align*}
+            Untuk menyelesaikan limit tersebut, kita kalikan dengan bentuk konjugat (sekawan) dari pembilangnya, sehingga diperoleh
+            \begin{align*}
+                \lim_{x\to 0} f(x)&=\lim_{x\to 0}\frac{\sqrt{x+9}-3}{x}\cdot\frac{\sqrt{x+9}+3}{\sqrt{x+9}+3}\\
+                &=\lim_{x\to 0}\frac{x+9-9}{x(\sqrt{x+9}+3)}\\
+                &=\lim_{x\to 0}\frac{x}{x(\sqrt{x+9}+3)}\\
+                &=\lim_{x\to 0}\frac{1}{\sqrt{x+9}+3}\\
+                &=\colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}\frac{1}{6}}\color{oldcolor}.
+            \end{align*}
+            Karena $\displaystyle\lim_{x \to 0} f(x) = f(0)$, diperoleh
+            \begin{align*}
+                \frac{1}{6} = \frac{1}{3}k-\frac{1}{5} \implies \frac{1}{3}k = \frac{1}{6} + \frac{1}{5} = \frac{5+6}{30} = \frac{11}{30} \implies k = \frac{11}{30} \cdot 3 = \frac{11}{10}.
+            \end{align*}
+            Jadi nilai $k$ yang membuat $\lim_{x \to 0} f(x) = f(0)$ adalah $\colorlet{oldcolor}{.}
+        \color{blue}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}k = \frac{11}{10}}\color{oldcolor}$.
+        Selanjutnya, untuk menyatakan fungsi $f(x)$ tanpa menggunakan bentuk fungsi sepotong-sepotong, kita dapat ambil ekspresi terakhir dari limit tersebut, yaitu
+        \begin{align*}
+            \colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}f(x) = \frac{1}{\sqrt{x+9}+3}, \quad x \in [-9,\infty).}
+        \end{align*}
+    }
+    \end{jawab}
 \end{enumerate}
 \newpage
  \begin{center}
@@ -834,7 +878,7 @@ ylabel=$y$
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Mata kuliah/SKS & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
 		Hari, Tanggal & : & Senin, 13 Oktober 2025\\
 		Jam/Waktu Ujian & : & 13.30 - 15.10 / 100 menit\\
 		Sifat & : & Tertutup\\
@@ -852,8 +896,79 @@ ylabel=$y$
                     |3-x|\leq -2x+1.
                 \end{align*}
             \end{enumerate}
-            \item Tentukan jarak titik $(1,3)$ dan $(7,11)$.
+            \begin{jawab}[definisi nilai mutlak, pertidaksamaan nilai mutlak]{
+                \begin{enumerate}
+                    \item Ingat kembali definisi nilai mutlak, yaitu
+                    \begin{align*}
+                        |3-x| &= \begin{cases}
+                            3-x, & 3-x \geq 0\\
+                            -(3-x), & 3-x < 0
+                        \end{cases} \\
+                        &= \begin{cases}
+                            3-x, & x\leq 3\\
+                            x-3, & x>3
+                        \end{cases}.
+                    \end{align*}
+                    \item Berdasarkan definisi tersebut, pertidaksamaan $|3-x|\leq -2x+1$ dapat ditulis menjadi dua kasus:
+                    \begin{enumerate}
+                        \item Jika $x\leq 3$, maka pertidaksamaan menjadi $3-x\leq -2x+1$, yang dapat diselesaikan menjadi $x\leq -2$.
+                        \item Jika $x>3$, maka pertidaksamaan menjadi $x-3\leq -2x+1$, yang dapat diselesaikan menjadi $x\leq \frac{4}{3}$. Namun, karena kita berada pada kasus $x>3$, tidak ada solusi pada kasus ini.
+                    \end{enumerate}
+                    Jadi semua nilai $x$ yang memenuhi pertidaksamaan tersebut adalah $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}x \leq 2}\color{oldcolor}$.
+                \end{enumerate}
+            }
+                
+            \end{jawab}
+            \item 
+            \begin{enumerate}
+                \item Tentukan jarak titik $(1,3)$ dan $(7,11)$.
             \item Tentukan persamaan lingkaran yang diameternya adalah jarak titik $(1,3)$ ke $(7,11)$.
+            \end{enumerate}
+            \begin{jawab}[jarak titik, persamaan lingkaran]{
+                \begin{enumerate}
+                    \item Ingat kembali rumus jarak antara dua titik $(x_1,y_1)$ dan $(x_2,y_2)$, yaitu
+                    \begin{align*}
+                        d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}.
+                    \end{align*}
+                    Dengan substitusi $(x_1,y_1)=(1,3)$ dan $(x_2,y_2)=(7,11)$, diperoleh
+                    \begin{align*}
+                        d &= \sqrt{(7-1)^2+(11-3)^2}\\
+                        &= \sqrt{6^2+8^2}\\
+                        &= \sqrt{36+64}\\
+                        &= \sqrt{100}\\
+                        &= 10.
+                    \end{align*}
+                    Jadi jarak antara titik $(1,3)$ dan $(7,11)$ adalah $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}d = 10}\color{oldcolor}$.
+                    \item Diketahui bahwa diameter lingkaran adalah jarak antara titik $(1,3)$ dan $(7,11)$, sehingga jari-jari lingkaran adalah setengah dari diameter, yaitu
+                    \begin{align*}
+                        r = \frac{d}{2} = \frac{10}{2} = 5.
+                    \end{align*}
+                    Karena diameternya berada di antara dua titik, maka pusat lingkaran adalah titik tengah dari dua titik tersebut. Titik tengah $(a,b)$ dari dua titik $(x_1,y_1)$ dan $(x_2,y_2)$ adalah
+                    \begin{align*}
+                        (a,b) = \left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right).
+                    \end{align*}
+                    Dengan substitusi $(x_1,y_1)=(1,3)$ dan $(x_2,y_2)=(7,11)$, diperoleh
+                    \begin{align*}
+                        (a,b) = \left(\frac{1+7}{2}, \frac{3+11}{2}\right) = \left(\frac{8}{2}, \frac{14}{2}\right) = (4,7).
+                    \end{align*}
+                    Jadi pusat lingkaran adalah $(4,7)$ dan jari-jarinya adalah $5$. Persamaan lingkaran dengan pusat $(a,b)$ dan jari-jari $r$ adalah
+                    \begin{align*}
+                        (x-a)^2 + (y-b)^2 = r^2.
+                    \end{align*}
+                    Dengan substitusi $(a,b)=(4,7)$ dan $r=5$, diperoleh
+                    \begin{align*}
+                        (x-4)^2 + (y-7)^2 = 5^2 = 25
+                    \end{align*}
+                    Jadi persamaan lingkaran yang diameternya adalah jarak titik $(1,3)$ ke $(7,11)$ adalah $$\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}(x-4)^2 + (y-7)^2 = 25}\color{oldcolor}.$$
+                \end{enumerate}
+            }
+            \end{jawab}
             \item Diberikan fungsi $f(x)=\begin{cases}
                 x-1, &x<3\\
                 2(x-4)^2, &x\geq 3
@@ -863,16 +978,135 @@ ylabel=$y$
                 \item Dapatkan domain dan range dari $f(x)$.
                 \item Sketsa grafik dari $f(x)$.
             \end{enumerate}
+            \begin{jawab}[fungsi sepotong-sepotong, domain dan range fungsi, sketsa grafik]{
+                \begin{enumerate}
+                    \item Diperoleh
+                    \begin{align*}
+                        f(3) &= 2(3-4)^2 = 2(-1)^2 = 2\\
+                        f(-2) &= -2-1 = -3\\
+                        f(1-x^2) &= (1-x^2)-1 = -x^2.
+                    \end{align*}
+                    Jadi diperoleh $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}f(3)=2,~f(-2)=-3,~f(1-x^2)=-x^2}\color{oldcolor}$.
+                    \item Untuk $x<3$, $f(x)=x-1$ adalah fungsi linear dengan domain $(-\infty,3)$ dan range $(-\infty,2)$. Untuk $x\geq 3$, $f(x)=2(x-4)^2$ adalah fungsi kuadrat dengan domain $[3,\infty)$ dan range $[0,\infty)$. Dengan demikian, domain dari $f(x)$ adalah $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}D(f)=(-\infty,3)\cup[3,\infty) = \mathbb{R}}\color{oldcolor}$, dan range dari $f(x)$ adalah $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}R(f)=(-\infty,2)\cup[0,\infty) = (-\infty,2)\cup[0,\infty)}\color{oldcolor}$.
+                    \item Sketsa grafik dari $f(x)$ adalah sebagai berikut:
+                    % \begin{center}
+                    %     \begin{tikzpicture}
+                    %         \begin{axis}[
+                    %             axis lines=middle,
+                    %             xmin=-5, xmax=7,
+                    %             ymin=-5, ymax=5,
+                    %             xtick distance=1,
+                    %             ytick distance=1,
+                    %             xlabel=$x$,
+                    %             ylabel=$f(x)$
+                    %         ]
+                    %         % Plot for x < 3
+                    %         \addplot[domain=-5:3, thick, blue] {x-1};
+                    %         % Plot for x >= 3
+                    %         \addplot[domain=3:7, thick, red] {2*(x-4)^2};
+                    %         % Mark the point at x=3
+                    %         \addplot[only marks, mark=*] coordinates {(3,2)};
+                    %         \end{axis}
+                    %     \end{tikzpicture}
+                    % \end{center}
+                \end{enumerate}
+            }   
+                
+            \end{jawab}
             \item Diberikan $f(x)=\frac{x^3-1}{x-1}$.
             \begin{enumerate}
                 \item Tentukan $\displaystyle\lim_{x\to 1}f(x)$.
                 \item Buatlah sketsa grafik $y=f(x)$.
             \end{enumerate}
+            \begin{jawab}[limit fungsi, sketsa grafik]{
+                \begin{enumerate}
+                    \item Diperhatikan bahwa jika kita substitusi $x=1$ ke dalam $f(x)$, maka diperoleh bentuk tak tentu $\frac{0}{0}$. Oleh karena itu, kita faktorkan pembilangnya:
+                    \begin{align*}
+                        x^3-1 = (x-1)(x^2+x+1).
+                    \end{align*}
+                    Dengan demikian, fungsi dapat disederhanakan menjadi
+                    \begin{align*}
+                        f(x) = \frac{x^3-1}{x-1} = \frac{(x-1)(x^2+x+1)}{x-1} = x^2+x+1, \quad x\neq 1.
+                    \end{align*}
+                    Sekarang kita dapat menghitung limitnya:
+                    \begin{align*}
+                        \lim_{x\to 1}f(x) &= \lim_{x\to 1}(x^2+x+1)\\
+                        &= 1^2 + 1 + 1\\
+                        &= 3.
+                    \end{align*}
+                    Jadi $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}\lim_{x\to 1}f(x) = 3}\color{oldcolor}$.
+                    \item Sketsa grafik dari $y=f(x)$ adalah sebagai berikut:
+                    % \begin{center}
+                    %     \begin{tikzpicture}
+                    %         \begin{axis}[
+                    %             axis lines=middle,
+                    %             xmin=-2, xmax=4,  
+                   %             ymin=-1, ymax=5,
+                    %             xtick distance=1,
+                    %             ytick distance=1,
+                    %             xlabel=$x$,
+                    %             ylabel=$f(x)$
+                    %         ]
+                    %         \addplot[domain=-2:4, thick, blue] {x^2+x+1};
+                    %         \addplot[only marks, mark=*] coordinates {(1,3)};
+                    %         \end{axis}
+                    %     \end{tikzpicture}
+                    % \end{center}
+                \end{enumerate}
+            }
+                
+            \end{jawab}
             \item Diketahui kurva $x^2y+4x-3y^2=2$.
             \begin{enumerate}
                 \item Dapatkan $\frac{dy}{dx}$ dengan menggunakan turunan fungsi implisit.
                 \item Dari (a) dapatkan persamaan garis singgung pada kurva tersebut di titik $(1,1)$.
             \end{enumerate}
+            \begin{jawab}[turunan implisit, persamaan garis singgung]{
+                \begin{enumerate}
+                    \item Kita turunkan kedua sisi persamaan $x^2y+4x-3y^2=2$ terhadap $x$, dengan mengingat bahwa $y$ adalah fungsi dari $x$ (yaitu $y=y(x)$):
+                    \begin{align*}
+                        \frac{d}{dx}(x^2y) + \frac{d}{dx}(4x) - \frac{d}{dx}(3y^2) &= \frac{d}{dx}(2)\\
+                        2xy + x^2\frac{dy}{dx} + 4 - 6y\frac{dy}{dx} &= 0.
+                    \end{align*}
+                    Sekarang kita kumpulkan semua suku yang mengandung $\frac{dy}{dx}$ di satu sisi:
+                    \begin{align*}
+                        x^2\frac{dy}{dx} - 6y\frac{dy}{dx} &= -2xy - 4\\
+                        (x^2 - 6y)\frac{dy}{dx} &= -2xy - 4\\
+                        \frac{dy}{dx} &= \frac{-2xy - 4}{x^2 - 6y}.
+                    \end{align*}
+                    Jadi diperoleh $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}\frac{dy}{dx} = \frac{-2xy - 4}{x^2 - 6y}}\color{oldcolor}$.
+                    \item Untuk mendapatkan persamaan garis singgung di titik $(1,1)$, kita substitusi $x=1$ dan $y=1$ ke dalam turunan yang telah kita peroleh:
+                    \begin{align*}
+                        \left.\frac{dy}{dx}\right|_{(1,1)} &= \frac{-2(1)(1) - 4}{(1)^2 - 6(1)}\\
+                        &= \frac{-2 - 4}{1 - 6}\\
+                        &= \frac{-6}{-5}\\
+                        &= \frac{6}{5}.
+                    \end{align*}
+                    Jadi kemiringan garis singgung di titik $(1,1)$ adalah $\frac{6}{5}$. Dengan menggunakan persamaan garis singgung $y - y_1 = m(x - x_1)$, di mana $(x_1,y_1)=(1,1)$ dan $m=\frac{6}{5}$, diperoleh:
+                    \begin{align*}
+                        y - 1 &= \frac{6}{5}(x - 1)\\
+                        y - 1 &= \frac{6}{5}x - \frac{6}{5}\\
+                        y &= \frac{6}{5}x - \frac{6}{5} + 1\\
+                        y &= \frac{6}{5}x - \frac{6}{5} + \frac{5}{5}\\
+                        y &= \frac{6}{5}x - \frac{1}{5}.
+                    \end{align*}
+                    Jadi persamaan garis singgung di titik $(1,1)$ adalah $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}y = \frac{6}{5}x - \frac{1}{5}}\color{oldcolor}$.
+                \end{enumerate}
+            }
+                
+            \end{jawab}
         \end{enumerate}
 \newpage
  \begin{center}
@@ -881,7 +1115,7 @@ ylabel=$y$
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Mata kuliah/SKS & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
 		Hari, Tanggal & : & Selasa, 14 Oktober 2025\\
 		Waktu & : & 07.00 - 08.40 / 100 menit\\
 		Sifat & : & Tertutup\\
@@ -896,10 +1130,72 @@ ylabel=$y$
             \begin{align*}
                 \frac{x^2-x-12}{x^2+3x-10}\geq 0.
             \end{align*}
+            \begin{jawab}[pertidaksamaan rasional, faktorisasi, garis bilangan]{
+                Pertama, kita faktorkan pembilang dan penyebut:
+                \begin{align*}
+                    x^2 - x - 12 &= (x-4)(x+3),\\
+                    x^2 + 3x - 10 &= (x+5)(x-2).
+                \end{align*}
+                Jadi pertidaksamaan menjadi:
+                \begin{align*}
+                    \frac{(x-4)(x+3)}{(x+5)(x-2)} \geq 0.
+                \end{align*}
+                Didapatkan pembuat nol dari pembilang adalah $x=4$ dan $x=-3$, dan pembuat nol dari penyebut adalah $x=-5$ dan $x=2$. Selanjutnya, dibuat garis bilangan dan tentukan tanda dari setiap interval:
+                \begin{itemize}
+                    \item Interval $(-\infty, -5)$: Pilih $x=-6$, maka $\frac{(-)(-)}{(-)(-)} = \frac{(+)(+)}{(+)(+)} > 0$.
+                    \item Interval $(-5, -3)$: Pilih $x=-4$, maka $\frac{(-)(-)}{(+)(-)} = \frac{(+)(+)}{(-)(-)} < 0$.
+                    \item Interval $(-3, 2)$: Pilih $x=0$, maka $\frac{(-)(+)}{(+)(-)} = \frac{(-)(+)}{(+)(-)} > 0$.
+                    \item Interval $(2, 4)$: Pilih $x=3$, maka $\frac{(-)(+)}{(+)(+)} = \frac{(-)(+)}{(+)(+)} < 0$.
+                    \item Interval $(4, \infty)$: Pilih $x=5$, maka $\frac{(+)(+)}{(+)(+)} = \frac{(+)(+)}{(+)(+)} > 0$.
+                \end{itemize}
+                Jadi tanda dari setiap interval adalah:
+                \begin{align*}
+                    (-\infty, -5): +, \quad (-5, -3): -, \quad (-3, 2): +, \quad (2, 4): -, \quad (4, \infty): +.
+                \end{align*}
+                Karena kita mencari di mana ekspresi tersebut $\geq 0$, kita ambil interval di mana tanda positif dan juga titik-titik di mana pembilangnya nol (yaitu $x=-3$ dan $x=4$). Namun, kita tidak termasuk titik-titik di mana penyebutnya nol (yaitu $x=-5$ dan $x=2$) karena itu akan membuat ekspresi tidak terdefinisi. Jadi solusi dari pertidaksamaan adalah:
+                \begin{align*}
+                    x \in (-\infty, -5) \cup [-3, 2) \cup [4, \infty).
+                \end{align*}
+                Jadi penyelesaian dari pertidaksamaan tersebut adalah $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}x \in (-\infty, -5) \cup [-3, 2) \cup [4, \infty)}\color{oldcolor}$.
+            }
+                
+            \end{jawab}
             \item \begin{enumerate}
                 \item Dapatkan kemiringan garis $\ell$ yang melalui titik $(0,0)$ dan $(-2,1)$.
                 \item Jika garis $\ell$ tegak lurus dengan garis yang menyinggung lingkaran yang berpusat di $(0,0)$ dan berjari-jari $\sqrt{5}$, di titik $(-2,1)$, maka dapatkan persamaan garis singgung lingkaran tersebut dan sketsalah.
             \end{enumerate}
+            \begin{jawab}[kemiringan garis, garis singgung lingkaran]{
+                \begin{enumerate}
+                    \item Kemiringan garis yang melalui dua titik $(x_1,y_1)$ dan $(x_2,y_2)$ adalah
+                    \begin{align*}
+                        m = \frac{y_2 - y_1}{x_2 - x_1}.
+                    \end{align*}
+                    Dengan substitusi $(x_1,y_1)=(0,0)$ dan $(x_2,y_2)=(-2,1)$, diperoleh
+                    \begin{align*}
+                        m &= \frac{1 - 0}{-2 - 0} = \frac{1}{-2} = -\frac{1}{2}.
+                    \end{align*}
+                    Jadi kemiringan garis $\ell$ adalah $\colorlet{oldcolor}{.}
+        \color{red}
+        \setlength{\fboxrule}{1pt} \boxed{\color{oldcolor}m = -\frac{1}{2}}\color{oldcolor}$.
+                    \item
+                    Persamaan lingkaran yang berpusat di $(0,0)$ dan berjari-jari $\sqrt{5}$ adalah
+                    \begin{align*}
+                        x^2 + y^2 = 5.
+                    \end{align*}
+                    Untuk mendapatkan garis singgung di titik $(-2,1)$, kita pertama-tama perlu memastikan bahwa titik tersebut berada pada lingkaran. Substitusi $(-2,1)$ ke dalam persamaan lingkaran:
+                    \begin{align*}
+                        (-2)^2 + (1)^2 = 4 + 1 = 5,
+                    \end{align*}
+                    yang sesuai dengan persamaan lingkaran, jadi titik tersebut memang berada pada lingkaran.
+                    Kemiringan garis singgung pada lingkaran di titik $(x_0,y_0)$ dapat diperoleh dari fakta bahwa garis singgungnya tegak lurus dengan garis $\ell$ yang melalui pusat lingkaran dan titik tersebut. Garis dari pusat $(0,0)$ ke titik $(-2,1)$ memiliki kemiringan
+                    \begin{align*}
+                        m_{radius} = \frac{1 - 0}{-2 - 0} = \frac{1}{-2} = -\frac{1}{2}.
+                    \end{align*}
+                    \end{enumerate}
+            }
+                \end{jawab}
             \item Tuliskan rumus turunan dari $fg$ yaitu $\frac{d}{dx}(f(x)g(x))$\\
             Selanjutnya, dapatkan turunan dari $fg$, jika diketahui $f(x)=3x^2-7x$ dan $g(x)=3-2x^2$.
             \item Dapatkan $\displaystyle \lim_{x\to 3} \frac{\sqrt{3x+7}-4}{x-3}$.
@@ -917,7 +1213,7 @@ ylabel=$y$
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Course / Credit & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
+		Course / Credit & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
 		Day, Date & : & Tuesday, 14 October 2025\\
 		Time / Exam Time & : & 07.00 - 08.40 / 100 menit\\
 		Type & : & Closed\\
@@ -952,7 +1248,7 @@ ylabel=$y$
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Mata kuliah/SKS & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
 		Hari, Tanggal & : & Selasa, 14 Oktober 2025\\
 		Waktu & : & 09.00 - 10.40 / 100 menit\\
 		Sifat & : & Tertutup\\
@@ -986,8 +1282,8 @@ ylabel=$y$
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Mata kuliah/SKS & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
-		Hari, Tanggal & : & Senin, 13 Oktober 2025\\
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
+		Hari, Tanggal & : & Selasa, 14 Oktober 2025\\
 		Waktu & : & 11.00 - 12.40 / 100 menit\\
 		Sifat & : & Tertutup\\
 		Kelas & : & 102, 108-112\\
@@ -1030,8 +1326,8 @@ ylabel=$y$
 
     \begin{center}
 	\begin{tabular}{lcl}
-		Mata kuliah/SKS & : & Kalkulus 1 ( SM234201 ) / 3 SKS\\
-		Hari, Tanggal & : & Senin, 13 Oktober 2025\\
+		Mata kuliah/SKS & : & Kalkulus 1 ( SM234101 ) / 3 SKS\\
+		Hari, Tanggal & : & Selasa, 14 Oktober 2025\\
 		Waktu & : & 15.30 - 17.10 / 100 menit\\
 		Sifat & : & Tertutup\\
 		Kelas & : & 30-39\\
